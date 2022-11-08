@@ -1,0 +1,614 @@
+--Creaci�n de tablas con su secuencia para id incremental
+
+---------------------------------------------------------LISTO --------VERIFICAR HORARIO
+--SUCURSAL
+CREATE TABLE SUCURSAL (
+    ID NUMBER PRIMARY KEY NOT NULL,
+    DIRECCION VARCHAR(20) NOT NULL,
+    DESCRIPCION VARCHAR(20) NOT NULL,
+    MAPA BLOB DEFAULT EMPTY_BLOB() NOT NULL,
+    HORARIO VARCHAR(20) NOT NULL,
+    
+    CONSTRAINT  FK_RESTAURANTE FOREIGN KEY (FK_RESTAURANTE) REFERENCES RESTAURANTE(ID),
+
+);
+
+CREATE SEQUENCE SEQ_SUCURSAL --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+
+insert into SUCURSAL values (SEQ_SUCURSAL.nextval);
+
+---------------------------------------------------------LISTO
+--INVENTARIO
+CREATE TABLE INVENTARIO (
+    ID NUMBER PRIMARY KEY NOT NULL,
+    FECHA_INVENTARIO FECHA NOT NULL,    --OJO ESTO ES UN TDA
+    CANTIDAD NUMBER NOT NULL,
+    ACUMULADO ACUMULADO NOT NULL, --- OJO ESTO ES UN TDA
+    
+    CONSTRAINT  FK_PRODUCTO FOREIGN KEY (FK_PRODUCTO) REFERENCES PRODUCTO(ID),
+    CONSTRAINT  FK_SUCURSAL FOREIGN KEY (FK_SUCURSAL) REFERENCES SUCURSAL(ID),
+
+    CONSTRAINT CH_CANTIDAD_POSITIVA CHECK (CANTIDAD>=0)
+);
+
+CREATE SEQUENCE SEQ_INVENTARIO --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------LISTO-------------------------VERIFICAR LO DE LAS HORAS
+--EVENTO
+CREATE TABLE EVENTO (
+    ID NUMBER PRIMARY KEY NOT NULL,
+    NOMBRE VARCHAR(30) NOT NULL,
+    CONDICIONES VARCHAR(100) NOT NULL,
+    HORA_INICIO NUMBER NOT NULL,  -- CAMBIADO A NUMBER, PARA PODER MANEJAR MEJOR LA HORA DE INICIO DEL EVENTO
+    HORA_FIN NUMBER NOT NULL,     -- CAMBIADO A NUMBER, PARA PODER MANEJAR MEJOR LA HORA DE INICIO DEL EVENTO
+    FECHA_EVENTO FECHA, --OJO
+    
+    CONSTRAINT  FK_GRUPO FOREIGN KEY (FK_GRUPO)
+    REFERENCES GRUPO(ID),
+    CONSTRAINT  FK_SUCURSAL FOREIGN KEY (FK_SUCURSAL)
+    REFERENCES SUCURSAL(ID)
+);
+
+CREATE SEQUENCE SEQ_EVENTO --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------LISTO
+--GRUPO
+CREATE TABLE GRUPO (
+    ID NUMBER PRIMARY KEY NOT NULL,
+    NOMBRE VARCHAR(30) NOT NULL,
+    DESCRIPCION VARCHAR(100) NOT NULL
+);
+
+CREATE SEQUENCE SEQ_GRUPO --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------LISTO
+--ENCUESTA
+CREATE TABLE ENCUESTA(
+    ID NUMBER PRIMARY KEY NOT NULL,
+    TIPO VARCHAR(30) NOT NULL,
+    VALORACION NUMBER NOT NULL,
+    OBSERVACION VARCHAR(100) NOT NULL,
+    FECHA_ENCUESTA FECHA, --OJO
+    
+    CONSTRAINT  FK_SUCURSAL FOREIGN KEY (FK_SUCURSAL) REFERENCES SUCURSAL(ID),
+    CONSTRAINT  FK_CLIENTE FOREIGN KEY (FK_CLIENTE) REFERENCES CLIENTE(ID),
+    CONSTRAINT  FK_PLATO FOREIGN KEY (FK_PLATO) REFERENCES PLATO(ID),
+
+    CONSTRAINT CH_TIPO CHECK (TIPO = 'Comida' OR TIPO = 'Restaurante'),
+    CONSTRAINT CH_VALORACION CHECK (VALORACION IN (1,2,3,4,5,6,7,8,9,10))
+
+);
+
+CREATE SEQUENCE SEQ_EVENTO --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------LISTO
+--PERSONA
+CREATE TABLE PERSONA(
+    CEDULA NUMBER PRIMARY KEY NOT NULL,
+    NOMBRE VARCHAR(30) NOT NULL,
+    APELLIDO VARCHAR(30) NOT NULL,
+    GENERO VARCHAR(1) NOT NULL,
+    TELEFONO NUMBER NOT NULL,
+    
+    CLIENTE NUMBER NOT NULL,
+    EMPLEADO NUMBER NOT NULL,
+
+
+    CONSTRAINT CH_CEDULA CHECK (CEDULA < 100000000),
+    CONSTRAINT CH_TELEFONO CHECK (TELEFONO < 100000000000),
+    CONSTRAINT CH_GENERO CHECK (GENERO = 'M' OR GENERO = 'F' OR GENERO = 'N/A'),
+    CONSTRAINT CH_CLIENTE_EMPLEADO CHECK ((CLIENTE = 1 AND EMPLEADO = 0) OR (CLIENTE = 0 AND EMPLEADO = 1)) --VERIFICAR, PORQUE UN EMPLEADO PUEDE SER CLIENTE
+);
+
+---------------------------------------------------------LISTO
+--EMPLEADO
+CREATE TABLE EMPLEADO(
+    ID NUMBER PRIMARY KEY NOT NULL,
+    FECHA_EGRESO DATE NOT NULL,
+    FECHA_CONTRATACION FECHA , --OJO
+    MOTIVO_EGRESO VARCHAR(30) NOT NULL,
+    
+    CONSTRAINT  FK_SUCURSAL FOREIGN KEY (FK_SUCURSAL)
+    REFERENCES SUCURSAL(ID),
+    CONSTRAINT  FK_PERSONA FOREIGN KEY (FK_PERSONA)
+    REFERENCES PERSONA(ID),
+
+);
+
+CREATE SEQUENCE SEQ_EMPLEADO --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------LISTO
+--PUESTO
+CREATE TABLE PUESTO(
+    ID NUMBER PRIMARY KEY NOT NULL,
+    FECHA_PUESTO FECHA , --OJO
+
+    
+    CONSTRAINT  FK_SUCURSAL FOREIGN KEY (FK_SUCURSAL)
+    REFERENCES SUCURSAL(ID),
+    CONSTRAINT  FK_EMPLEADO FOREIGN KEY (FK_EMPLEADO)
+    REFERENCES EMPLEADO(ID),
+    CONSTRAINT  FK_ROL FOREIGN KEY (FK_ROL)
+    REFERENCES ROL(ID),
+
+);
+
+CREATE SEQUENCE SEQ_PUESTO --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------LISTO
+--ROL
+CREATE TABLE ROL(
+    ID NUMBER NOT NULL,
+    NOMBRE VARCHAR(20) PRIMARY KEY NOT NULL,
+    FUNCION VARCHAR(30) NOT NULL,
+    SUELDO MONTO,                -----OJO,
+    PUESTO_UNICO BOOLEAN  NOT NULL,
+
+    CONSTRAINT UQ_ID_ROL UNIQUE(ID)
+);
+
+CREATE SEQUENCE SEQ_ROL --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------LISTO
+--RESERVA
+CREATE TABLE RESERVA(
+    ID NUMBER PRIMARY KEY NOT NULL,
+    FECHA_RESERVA FECHA , --OJO
+    ABONO MONTO , --OJO
+    CANT_PERSONAS NUMBER NOT NULL,
+
+    CONSTRAINT  FK_SUCURSAL FOREIGN KEY (FK_SUCURSAL)
+    REFERENCES SUCURSAL(ID),
+    CONSTRAINT  FK_CLIENTE FOREIGN KEY (FK_CLIENTE)
+    REFERENCES PERSONA(ID),
+    CONSTRAINT  FK_MESA FOREIGN KEY (FK_MESA)
+    REFERENCES MESA(ID),
+
+    CONSTRAINT CH_CANT_PERSONAS CHECK (CANT_PERSONAS > 0)
+
+);
+
+CREATE SEQUENCE SEQ_RESERVA --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------VERIFICAR ESTA TABLA, CUALES SON LAS ID DE LAS QUE HABLA-------------------------------------------
+--MESA RESERVADA
+CREATE TABLE MESA_RESERVADA(
+    ID NUMBER NOT NULL,
+    
+    CONSTRAINT  PK_RESERVA FOREIGN KEY (PK_RESERVA)
+    REFERENCES RESERVA(ID),
+    CONSTRAINT  PK_MESA FOREIGN KEY (PK_MESA)
+    REFERENCES MESA(ID),
+    CONSTRAINT  FK_SURCURSAL FOREIGN KEY (FK_SURCURSAL)
+    REFERENCES SURCUSAL(ID),
+
+    primary key(PK_MESA,PK_RESERVA),
+    CONSTRAINT UQ_ID_MESA_RESER UNIQUE(ID)
+
+);
+
+CREATE SEQUENCE SEQ_MESA_RESERVADA --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------REVISAR, QUE ES EL NUMERO DE MESA Y EL ID DE LA MESA-------------------------------------
+--MESA
+CREATE TABLE MESA(
+    ID NUMBER  NOT NULL,
+    NUMERO NUMBER NOT NULL,
+    CANT_PUESTOS NUMBER NOT NULL,
+    
+    CONSTRAINT  PK_SUCURSAL FOREIGN KEY (PK_SUCURSAL)
+    REFERENCES SUCURSAL(ID),
+    primary key(PK_SUCURSAL,NUMERO),
+
+    CONSTRAINT UQ_ID_MESA UNIQUE(ID),
+    CONSTRAINT CH_NUMERO CHECK(NUMERO > 0),
+    CONSTRAINT CH_CANT_PUESTOS CHECK(CANT_PUESTOS > 0)
+);
+
+CREATE SEQUENCE SEQ_MESA --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------LISTO
+--CONTABILIDAD
+CREATE TABLE CONTABILIDAD (
+    ID NUMBER PRIMARY KEY NOT NULL,
+    MONTO NUMBER NOT NULL,
+    FECHA_RESERVA FECHA , --OJO
+    ACUMULADO ACUMULADO, --OJO
+    
+    CONSTRAINT  FK_SUCURSAL FOREIGN KEY (FK_SUCURSAL)
+    REFERENCES SUCURSAL(ID),
+
+    -- CONSTRAINT CH_MONTO CHECK(MONTO > 0) ACA PUEDEN HABER NUMERO NEGATIVOS
+);
+
+CREATE SEQUENCE SEQ_CONTABILIDAD --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------LISTO
+--RESTAURANTE
+CREATE TABLE RESTAURANTE(
+    ID NUMBER NOT NULL,
+    NOMBRE VARCHAR(20) PRIMARY KEY NOT NULL,
+    LOGO BLOB DEFAULT EMPTY_BLOB() NOT NULL,
+);
+
+CREATE SEQUENCE SEQ_RESTAURANTE --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------LISTO
+--CONSUMO
+CREATE TABLE CONSUMO(
+    ID NUMBER PRIMARY KEY NOT NULL,
+    UBICACION VARCHAR(30) NOT NULL,
+    TIPO VARCHAR(20) NOT NULL,
+    MAPA BLOB DEFAULT EMPTY_BLOB() NOT NULL,
+    FECHA_CONSUMO FECHA, -------OJO
+
+    
+    CONSTRAINT  FK_SUCURSAL FOREIGN KEY (FK_SUCURSAL)
+    REFERENCES SUCURSAL(ID),
+    CONSTRAINT  FK_COMPRA FOREIGN KEY (FK_COMPRA)
+    REFERENCES COMPRA(ID),
+    CONSTRAINT  FK_CLIENTE FOREIGN KEY (FK_CLIENTE)
+    REFERENCES PERSONA(ID),
+    CONSTRAINT  FK_MESA FOREIGN KEY (FK_MESA)
+    REFERENCES MESA(ID),
+
+    CONSTRAINT CH_TIPO CHECK (TIPO = 'Local' OR TIPO = 'Pick-Up' OR TIPO = 'Delivery')
+
+);
+
+CREATE SEQUENCE SEQ_CONSUMO  --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------LISTO
+--PRODUCTO
+CREATE TABLE PRODUCTO(
+    NOMBRE VARCHAR(20) PRIMARY KEY NOT NULL,
+    ID NUMBER NOT NULL,
+    FOTO BLOB DEFAULT EMPTY_BLOB() NOT NULL,
+    PRECIO_UNITARIO MONTO,  ----OJO
+    UNIDAD VARCHAR(3) NOT NULL,
+    CANT_MINIMA NUMBER NOT NULL,
+
+    CONSTRAINT UQ_ID_PRODUCTO UNIQUE(ID)
+
+    CONSTRAINT CH_UNIDAD CHECK (UNIDAD = 'Kg' OR UNIDAD = 'Lts' OR UNIDAD = 'Gr'), --Aca se puede cambiar o agregar tipo de unidad
+    CONSTRAINT CH_CANT_MINIMA CHECK (CANT_MINIMA > 0)
+
+);
+
+CREATE SEQUENCE SEQ_PRODUCTO --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+
+---------------------------------------------------------LISTO
+--RECETA
+CREATE TABLE RECETA(
+    ID NUMBER PRIMARY KEY NOT NULL,
+    CANTIDAD NUMBER NOT NULL,
+    
+    
+    CONSTRAINT  FK_PLATO FOREIGN KEY (FK_PLATO)
+    REFERENCES PLATO(ID),
+    CONSTRAINT  FK_PRODUCTO FOREIGN KEY (FK_PRODUCTO)
+    REFERENCES PRODUCTO(ID),
+
+    CONSTRAINT CH_CANTIDAD CHECK (CANTIDAD > 0)
+
+);
+
+CREATE SEQUENCE SEQ_PRODUCTO --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------LISTO
+--PLATO
+CREATE TABLE PLATO(
+    NOMBRE VARCHAR(20)PRIMARY KEY NOT NULL,
+    ID NUMBER NOT NULL,
+    PRECIO MONTO, -------OJO
+    FOTO BLOB DEFAULT EMPTY_BLOB() NOT NULL,
+    DESCRIPCION VARCHAR(50) NOT NULL,
+    CATEGORIA VARCHAR(30) NOT NULL,
+
+    CONSTRAINT UQ_ID_PLATO UNIQUE(ID),
+    CONSTRAINT CH_CATEGORIA CHECK (CATEGORIA = 'Comida' OR CATEGORIA = 'Bebida' OR CATEGORIA = 'Postre') --Aca se puede cambiar o agregar  categorias nuevas
+
+
+);
+
+CREATE SEQUENCE SEQ_PLATO --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------LISTO
+--PLATO CONSUMIDO
+CREATE TABLE PLATO_CONSUMIDO(
+    ID NUMBER PRIMARY KEY NOT NULL,
+    
+    CONSTRAINT  FK_PLATO FOREIGN KEY (FK_PLATO)
+    REFERENCES PLATO(ID),
+    CONSTRAINT  FK_CONSUMO FOREIGN KEY (FK_CONSUMO)
+    REFERENCES CONSUMO(ID),
+
+);
+
+CREATE SEQUENCE SEQ_PRODUCTO --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------LISTO
+--PLATO DIA
+CREATE TABLE PLATO_DIA(
+    ID NUMBER PRIMARY KEY NOT NULL,
+    FECHA_PLA_DIA FECHA,   ------OJO
+
+    CONSTRAINT  FK_PLATO FOREIGN KEY (FK_PLATO)
+    REFERENCES PLATO(ID),
+);
+
+CREATE SEQUENCE SEQ_PLATO_DIA --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------LISTO
+--PROMOCION
+CREATE TABLE PROMOCION(
+    ID NUMBER PRIMARY KEY NOT NULL,
+    DESCRIPCION VARCHAR(50) NOT NULL,
+    DESCUENTO NUMBER NOT NULL,
+    PRECIO_FIN MONTO, -----OJO
+    FECHA_PROMO  FECHA,    ---OJO
+
+    CONSTRAINT CH_DESCUENTO CHECK (DESCUENTO > 0 and DESCUENTO <= 100) --ACA PODEMOS ESPECIFICAR MEJOR LOS DESCUENTOS
+);
+
+CREATE SEQUENCE SEQ_PROMOCION --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------LISTO
+--PAGO
+CREATE TABLE PAGO(
+    ID NUMBER PRIMARY KEY NOT NULL,
+    MONTO MONTO,   ---OJO
+    FORMA_PAGO VARCHAR(20) NOT NULL,
+    
+    CONSTRAINT  FK_COMPRA FOREIGN KEY (FK_COMPRA)
+    REFERENCES COMPRA(ID),
+
+    CONSTRAINT CH_FORMA_PAGO CHECK (FORMA_PAGO = 'Efectivo' OR FORMA_PAGO = 'POS' OR FORMA_PAGO = 'Zelle' OR FORMA_PAGO = 'Pipol' OR FORMA_PAGO = 'Pay' OR FORMA_PAGO = 'PayPal' OR FORMA_PAGO = 'Zinli' OR FORMA_PAGO = 'Criptomonedas') --Aca se puede cambiar o agregar tipo de unidad
+
+);
+
+CREATE SEQUENCE SEQ_PAGO --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+---------------------------------------------------------LISTO
+--COMPRA
+CREATE TABLE COMPRA(
+    ID NUMBER PRIMARY KEY NOT NULL,
+    FECHA_COMPRA FECHA, ----OJO
+    TOTAL MONTO, ----OJOJ
+    
+    CONSTRAINT  FK_SUCURSAL FOREIGN KEY (FK_SUCURSAL)
+    REFERENCES SUCURSAL(ID),
+    CONSTRAINT  FK_CLIENTE FOREIGN KEY (FK_CLIENTE)
+    REFERENCES PERSONA(ID)
+
+);
+
+CREATE SEQUENCE SEQ_COMPRA --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
+
+
+--CREACION DE LOS TDA'S QUE SE USARAN-----------------------------------------------------------------------------------------------
+
+--FECHA
+CREATE OR REPLACE TYPE FECHA AS OBJECT(
+    FECHA_INICIO DATE,
+    FECHA_FIN DATE,
+    
+    STATIC FUNCTION VALIDATE_DATE ( FECHA_INICIO DATE, FECHA_FIN DATE ) RETURN DATE
+);
+
+CREATE OR REPLACE TYPE BODY FECHA AS
+    STATIC FUNCTION VALIDATE_DATE( FECHA_INICIO DATE, FECHA_FIN DATE )
+    RETURN DATE
+    IS
+    BEGIN
+        --RAISE_APPLICATION_ERROR(-20001,'ERROR EN LAS FECHAS');
+        IF ((FECHA_FIN > FECHA_INICIO)) THEN
+                RETURN FECHA_INICIO;
+        ELSE
+            RAISE_APPLICATION_ERROR(-20001,'ERROR EN LAS FECHAS');
+        END IF;
+    END;
+END;
+
+-- INSERT INTO PROMOCION VALUES(1,'Cachapa',FECHA(fecha.validate_date('1-JUN-2020', '5-JUN-2021'),'5-JUN-2021'));
+
+--MONTO
+CREATE OR REPLACE TYPE MONTO AS OBJECT(
+    MONTO NUMBER,
+    UNIDAD_MONTO VARCHAR(3),
+    
+    STATIC FUNCTION VALIDATE_MONTO ( MONTO NUMBER) RETURN NUMBER
+);
+
+
+CREATE OR REPLACE TYPE BODY MONTO AS
+    STATIC FUNCTION VALIDATE_MONTO( MONTO NUMBER )
+    RETURN NUMBER
+    IS
+    BEGIN
+        IF ((MONTO > 0)) THEN
+            RETURN MONTO;
+        ELSE
+            RAISE_APPLICATION_ERROR(-20001,'ERROR, EL MONTO DEBE SER POSITIVO');
+        END IF;
+    END;
+END;
+
+--ACUMULADO
+CREATE OR REPLACE TYPE ACUMULADO AS OBJECT(
+    CANT_ACUMULADO NUMBER,
+    
+    STATIC FUNCTION CALCULATE_ACUM_INV ( ID_SUCURSAL NUMBER, ID_PRODUCTO NUMBER) RETURN NUMBER,
+    STATIC FUNCTION CALCULATE_ACUM_CONT ( ID_SUCURSAL NUMBER) RETURN NUMBER,
+);
+
+CREATE OR REPLACE TYPE BODY ACUMULADO AS
+    STATIC FUNCTION CALCULATE_ACUM_INV(  ID_SUCURSAL NUMBER, ID_PRODUCTO NUMBER)
+    RETURN NUMBER
+    IS
+    BEGIN
+        ---------ACA HACES LO QUE TENGAS QUE HACER
+    END;
+END;
+
+CREATE OR REPLACE TYPE BODY ACUMULADO AS
+    STATIC FUNCTION CALCULATE_ACUM_CONT( ID_SUCURSAL NUMBER)
+    RETURN NUMBER
+    IS
+    BEGIN
+        ---------ACA HACES LO QUE TENGAS QUE HACER
+    END;
+END;
+
+
+
+
+
+
+
+
+
+
+--CONSTRAINS
+--http://chancrovsky.blogspot.com/2014/12/constraints-o-restricciones.html
+
+
+-- CLAVE PRIMERIA COMPUESTA
+-- https://www.tutorialesprogramacionya.com/mysqlya/temarios/descripcion.php?cod=38#:~:text=Definimos%20una%20clave%20compuesta%20cuando,siempre%20será%20a%20distinta%20hora.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
