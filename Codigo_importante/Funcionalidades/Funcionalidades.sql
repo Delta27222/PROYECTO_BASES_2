@@ -15,3 +15,25 @@ Begin
     Return round(numero_random);
 end;
 
+
+
+
+
+
+--insert en reserva funciinal
+insert into reserva values (1, fecha(to_date('14-OCT-22'),to_date('14-OCT-22')), monto(monto.VALIDATE_MONTO(10), '$'), 2, 1,2)
+
+
+
+
+--Insert en evento funcional
+insert into evento values(3,'Las gaitas','Zero regueton',1,2,fecha(to_date('15-OCT-22'),to_date('15-OCT-22')),1,2)
+
+--insert en grupo funcional   
+insert into grupo values (1, 'Los parranderos', 'Cantan gaitas')
+        
+
+--Modificar una columna de una tabla
+alter table evento
+  modify nombre varchar(100)
+
