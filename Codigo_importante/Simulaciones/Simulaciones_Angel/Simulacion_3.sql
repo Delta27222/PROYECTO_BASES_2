@@ -12,11 +12,11 @@ Begin
         
         nombre_grupo varchar(30);
         grupo_guardado number;
-        descripcion_grupo varchar(30);
+        descripcion_grupo varchar(100);
         id_grupo_ya_registrado number;
         
-        nombre_evento varchar(40);
-        condiciones_evento varchar(30);
+        nombre_evento varchar(100);
+        condiciones_evento varchar(1000);
         
         mensaje_para_mostrar varchar(200);
     
@@ -47,8 +47,8 @@ Begin
         fecha_tomada := 0;
         
         select count(event.id) into fecha_tomada from evento event
-        where event.id_sucursal = 1 and event.fecha_evento.FECHA_INICIO = '16-OCT-22' ;
---        where event.id_sucursal = id_sucursal_aleatoria and event.fecha_evento.FECHA_INICIO = fecha_aleatoria ;
+--        where event.id_sucursal = 1 and event.fecha_evento.FECHA_INICIO = '16-OCT-22' ;
+        where event.id_sucursal = id_sucursal_aleatoria and event.fecha_evento.FECHA_INICIO = fecha_aleatoria ;
     
         if (fecha_tomada = 0) then 
             mensaje_para_mostrar := 'La sucursal de ' || ubicacion_sucursal || ' no posee ningún evento para la fecha ' || fecha_aleatoria;
@@ -87,7 +87,7 @@ Begin
             
             select count(id) into grupo_guardado from grupo gru
             where gru.nombre = nombre_grupo;
-            grupo_guardado:=1;
+--            grupo_guardado:=1;
             if(grupo_guardado = 0) then 
             
                 mensaje_para_mostrar := 'El grupo ' || nombre_grupo || ' de '|| descripcion_grupo || ' no se encuentra registrado en nuestra base de datos, se procederá a registrar';
@@ -95,7 +95,7 @@ Begin
                 dbms_output.put_line('------------------------------------------------------------------------');
                 
             --En este punto se agrego el el grupo
-                --insert into grupo values(seq_grupo.nextval, nombre_grupo, descripcion_grupo)         --ACA HACE INSERCION DELL GURPO NUEVO
+                  insert into grupo values(SEQ_GRUPO.nextval, nombre_grupo, descripcion_grupo);         --ACA HACE INSERCION DELL GURPO NUEVO
             else
 
                 mensaje_para_mostrar := 'El grupo ' || nombre_grupo || ' ya se encuentra registrado en la base de datos, no se procederá a guardar por segunda vez';
@@ -104,33 +104,27 @@ Begin
             
             end if;
             
---Aca asignamos el grupo al evento
+--Aca asignamos el grupo al evento 
             if (grupo_guardado = 0) then
             
-                --SE TIENEN QUE ACTIVAR ESTOS COMENTARIOS PARA PODER HACER LAS BUSQUEDAS, Y QUITAR EL COMENTARIO DE ABAJO-----------------------------------------------------------------------------------OJO
-                --select gru2.id into id_grupo_ya_registrado  from grupo gru2 where gru2.nombre = nombre_grupo;
-                
-                select gru2.id into id_grupo_ya_registrado  from grupo gru2 where gru2.nombre = 'Los parranderos';
-
+                select gru2.id into id_grupo_ya_registrado  from grupo gru2 where gru2.nombre = nombre_grupo;
                 
                 select gru3.descripcion into descripcion_grupo from grupo gru3 where gru3.id = id_grupo_ya_registrado;
-                
+
                 nombre_evento := 'Mix '||descripcion_grupo||' de '||nombre_grupo;     
                 
                 condiciones_evento := 'Mucha '||descripcion_grupo||' de calidad';
         
             --En este punto se agrego el evento a la base se datos con el grupo y la sucursal
-                --insert into evento values (seq_evento.nextval,nombre_evento, condiciones_evento, 10, 14, fecha(fecha_aleatoria, fecha_aleatoria), id_grupo_ya_registrado, id_sucursal_aleatoria);
+                insert into evento values (seq_evento.nextval,nombre_evento, condiciones_evento, 10, 14, fecha(fecha_aleatoria, fecha_aleatoria), id_grupo_ya_registrado, id_sucursal_aleatoria);
 
                 mensaje_para_mostrar := 'Se le asigno a la sucursal de ' || ubicacion_sucursal || ' el evento '|| nombre_evento || ' en la fecha ' || fecha_aleatoria;
                 dbms_output.put_line(mensaje_para_mostrar);    
                 dbms_output.put_line('------------------------------------------------------------------------');
                 
             else
-                --SE TIENEN QUE ACTIVAR ESTOS COMENTARIOS PARA PODER HACER LAS BUSQUEDAS, Y QUITAR EL COMENTARIO DE ABAJO-----------------------------------------------------------------------------------OJO
-                --select gru2.id into id_grupo_ya_registrado  from grupo gru2 where gru2.nombre = nombre_grupo;
-                
-                select gru2.id into id_grupo_ya_registrado  from grupo gru2 where gru2.nombre = 'Los parranderos';
+
+                select gru2.id into id_grupo_ya_registrado  from grupo gru2 where gru2.nombre = nombre_grupo;
                 
                 select gru3.descripcion into descripcion_grupo from grupo gru3 where gru3.id = id_grupo_ya_registrado;
                 
@@ -138,7 +132,7 @@ Begin
                 
                 condiciones_evento := 'Mucha '||descripcion_grupo||' de calidad';
             
-              --insert into evento values (seq_evento.nextval,nombre_evento, condiciones_evento, 10, 14, fecha(fecha_aleatoria, fecha_aleatoria), id_grupo_ya_registrado, id_sucursal_aleatoria);
+               insert into evento values (seq_evento.nextval,nombre_evento, condiciones_evento, 10, 14, fecha(fecha_aleatoria, fecha_aleatoria), id_grupo_ya_registrado, id_sucursal_aleatoria);
               
                 mensaje_para_mostrar := 'Se le asigno a la sucursal de ' || ubicacion_sucursal || ' el evento '|| nombre_evento || ' en la fecha ' || fecha_aleatoria;
                 dbms_output.put_line(mensaje_para_mostrar);    
@@ -156,4 +150,3 @@ Begin
         
     end; 
 end;  
-
