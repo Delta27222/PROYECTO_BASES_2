@@ -37,3 +37,6 @@ insert into grupo values (1, 'Los parranderos', 'Cantan gaitas')
 alter table evento
   modify nombre varchar(100)
 
+
+alter table GRUPO
+  modify nombre varchar(100)
