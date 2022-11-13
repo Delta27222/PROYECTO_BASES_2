@@ -9,9 +9,6 @@
 - [x] 7)  Escenario Compra de Sucursal.
 - [ ] 8)  Escenario Realizar Compra.
 
-
-
-
 > Reportes:
 
 - [x] 1)  Reporte de Platos de mayor demanda.
@@ -29,4 +26,4 @@
 - [ ] 13)  Reporte de reservas realizadas en el Restaurante.
 - [ ] 14)  Reporte de Grupos musicales contratados para la Sucursal del Restaurante.
 
-
+![This is an image](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQetv0pyynebw9fsjAYFVAmMdAailUHKOwFpdRKwkmw_dvECF7JwJT-BeFn5R2WzUR-Ex0&usqp=CAU)
