@@ -2,7 +2,7 @@ create or replace procedure reporte_1(cur in out sys_refcursor, fecha_ini DATE, 
 is 
 begin
     open cur for
-        select s.direccion, p.nombre platos, c.tipo, count(pc.id_plato) cant_veces_sol,
+        select s.direccion, p.nombre platos, p.foto, p.descripcion ,c.tipo, fecha_ini, fecha_fin, count(pc.id_plato) cant_veces_sol,
         concat(round((count(pc.id_plato)*100)/avg.porcentaje),'%') porcentaje, p.precio precio_unitario
         from plato_consumido pc
         join consumo c
@@ -21,7 +21,7 @@ begin
         JOIN SUCURSAL S
         ON s.id = c.id_sucursal
         where c.fecha_consumo.fecha_inicio BETWEEN fecha_ini and fecha_fin
-        group by p.nombre, avg.porcentaje, s.direccion, c.tipo, p.precio
+        group by p.nombre, avg.porcentaje, s.direccion, c.tipo, p.precio, p.foto, p.descripcion
         order by avg.sucursal, p.nombre, c.tipo;
 end;
 
