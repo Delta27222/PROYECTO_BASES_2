@@ -6,5 +6,5 @@ begin
         from plato p
         join plato_dia pd
         on p.id = pd.id_plato
-        where pd.fecha_pla_dia.FECHA_INICIO = fecha_var;
+        where pd.fecha_pla_dia.FECHA_INICIO = fecha_var; 
 end;
