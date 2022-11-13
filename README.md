@@ -1,5 +1,7 @@
 # Proyecto_BASES_2
 
+> Simulaciones:
+
 - [x] 1)  Escenario Reservar una mesa.
 - [ ] 2)  Escenario Compra de Inventario.
 - [x] 3)  Escenario de Contratación de Grupo.
