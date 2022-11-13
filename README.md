@@ -1,9 +1,15 @@
 # Proyecto_BASES_2
 
-> Simulaciones:
-- [x] #739
-- [ ] https://github.com/octo-org/octo-repo/issues/740
-- [ ] Add delight to the experience when all tasks are complete :tada:
+- [x] 1)  Escenario Reservar una mesa.
+- [ ] 2)  Escenario Compra de Inventario.
+- [x] 3)  Escenario de Contratación de Grupo.
+- [ ] 4)  Escenario Realizar Consumo.
+- [ ] 5)  Escenario Pagar Nómina a Trabajadores.
+- [ ] 6)  Escenario Contratación de personal.
+- [x] 7)  Escenario Compra de Sucursal.
+- [ ] 8)  Escenario Realizar Compra.
+
+
 
 
 > Reportes:
