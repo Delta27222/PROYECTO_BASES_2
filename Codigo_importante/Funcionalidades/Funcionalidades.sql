@@ -40,3 +40,17 @@ alter table evento
 
 alter table GRUPO
   modify nombre varchar(100)
+
+
+alter table sucursal
+  modify descripcion varchar(50)
+
+alter table sucursal
+  modify direccion varchar(50)
+
+  alter table persona
+  modify genero varchar(3)
+
+  
+  alter table rol
+  modify funcion varchar(50)
