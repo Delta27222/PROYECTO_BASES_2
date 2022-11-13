@@ -12,6 +12,7 @@ begin
             from plato_consumido pc
             join consumo c
             on c.id = pc.id_consumo
+            where c.fecha_consumo.fecha_inicio BETWEEN fecha_ini and fecha_fin
             group by c.ID_sucursal
         ) avg
         on c.id_sucursal = avg.sucursal
