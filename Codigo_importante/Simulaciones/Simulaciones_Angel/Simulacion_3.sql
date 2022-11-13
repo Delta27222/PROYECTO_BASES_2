@@ -21,6 +21,13 @@ Begin
         mensaje_para_mostrar varchar(200);
     
     begin
+        dbms_output.put_line('                                                                        ');
+        dbms_output.put_line('                                                                        ');
+        dbms_output.put_line('*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-');
+        dbms_output.put_line('*-*-*-*-*-*--------Simulación 3: Contratación de Grupo--------*-*-*-*-*-*');          
+        dbms_output.put_line('*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-');
+        dbms_output.put_line('                                                                        ');
+    
         select count(id)into cantidad_sucursales from sucursal;             --Guarda la cantidad de sucursales que estan guardadas en la base de datos
         id_sucursal_aleatoria := round(dbms_random.value(1,cantidad_sucursales)); --Se calcula con el random para el id de la sucursal
         declare
