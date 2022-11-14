@@ -13,11 +13,11 @@
 
 > Reportes:
 
-- [x] 1)  Reporte de Platos de mayor demanda.
+- [x] 1)  Reporte de Platos de mayor demanda.  (REVISAR, FUNCIONAMIENTO DEFECTUOSO CUANDO SE USA CON EL JASPERSOFT)
 - [x] 2)  Reporte de Menú del día.
 - [ ] 3)  Reporte de historico de Promociones.
 - [ ] 4)  Reporte de Empleados del Restaurante por Sucursal y su Rol.
-- [ ] 5)  Reporte de Sucursales del Restaurante.
+- [x] 5)  Reporte de Sucursales del Restaurante.
 - [ ] 6)  Reporte de horarios de mayor y menor afluencia por Restaurante y Sucursal.
 - [ ] 7)  Reporte de control de Inventario de mercancía.
 - [ ] 8)  Reporte de ingresos y egresos por Sucursal de Restaurante.
