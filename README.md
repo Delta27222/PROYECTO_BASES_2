@@ -2,7 +2,7 @@
 
 > Simulaciones:
 
-- [x] 1)  Escenario Reservar una mesa.
+- [x] 1)  Escenario Reservar una mesa.   (REVISAR, CON LOS INSERTS DE JAVIER)
 - [ ] 2)  Escenario Compra de Inventario.
 - [x] 3)  Escenario de Contratación de Grupo.
 - [ ] 4)  Escenario Realizar Consumo.
