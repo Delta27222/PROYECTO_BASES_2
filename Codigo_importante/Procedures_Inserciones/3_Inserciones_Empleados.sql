@@ -1,6 +1,4 @@
--- PROCEDURE PARA INSERTAR EN LA TABLA DE EMPLEADOS
-
-create or replace procedure INSERTAR_EMPLEADO(cedula_empleado number, id_sucursal number)
+create or replace NONEDITIONABLE procedure INSERTAR_EMPLEADO(id_emnpleado number, id_sucursal number)
 is 
 Begin
     DECLARE
@@ -11,7 +9,7 @@ Begin
         fecha_contratacion date;
         numero_aleatorio number;
         motivo_egreso varchar(30);
-        
+
     --  CREATE OR REPLACE DIRECTORY IMAGENES_EMPLEADO AS 'C:\imagenes_Proyecto_Bases_2\Empleado\';
     --  GRANT READ,WRITE ON DIRECTORY IMAGENES_EMPLEADO TO USER_PROYECTO;
 
@@ -25,12 +23,12 @@ Begin
            array array_t := array_t('Mala conducta','Nuevo puesto','Compromiso','Nuevo cargo','Cambio horario','Subida de rango');
             numero_aleatorio number;
         begin
-            numero_aleatorio := round(dbms_random.value(1,6));
+            numero_aleatorio := round(dbms_random.value(1,6)); 
             motivo_egreso:=array(numero_aleatorio);
         end;
-        
-        INSERT INTO EMPLEADO VALUES(SEQ_EMPLEADO.NEXTVAL,EMPTY_BLOB(), fecha_egreso,fecha(fecha_contratacion,fecha_contratacion),motivo_egreso,cedula_empleado,id_sucursal) Returning FOTO INTO V_TEMP;
-        
+
+        INSERT INTO EMPLEADO VALUES(SEQ_EMPLEADO.NEXTVAL,EMPTY_BLOB(), fecha_egreso,fecha(fecha_contratacion,fecha_contratacion),motivo_egreso,id_emnpleado,id_sucursal) Returning FOTO INTO V_TEMP;
+
         V_NAME_IMAGE := numero_aleatorio||'.jpg';
 
         V_BFILE := BFILENAME('IMAGENES_EMPLEADO',V_NAME_IMAGE);   --SI LA IMAGEN (V_NAME_IMAGE) EXISTE EN EL DIRECTORIO (OBJETOS_LOB) SE GUARDA EN V_BFILE
