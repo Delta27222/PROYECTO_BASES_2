@@ -4,11 +4,11 @@
 
 - [x] 1)  Escenario Reservar una mesa.   (DA EL ERROR PORQUE SE ESTA USANDO UNA VARIABLE DE NOMBRE DE SUCURSAL, NO EXISTE) 
 - [ ] 2)  Escenario Compra de Inventario.
-- [x] 3)  Escenario de Contratación de Grupo.
+- [x] 3)  Escenario de Contratación de Grupo.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [ ] 4)  Escenario Realizar Consumo.
 - [ ] 5)  Escenario Pagar Nómina a Trabajadores.
 - [ ] 6)  Escenario Contratación de personal.
-- [x] 7)  Escenario Compra de Sucursal.
+- [x] 7)  Escenario Compra de Sucursal.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [ ] 8)  Escenario Realizar Compra.
 
 > Reportes:
