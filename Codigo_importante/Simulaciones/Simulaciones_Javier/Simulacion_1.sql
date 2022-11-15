@@ -37,10 +37,9 @@ Begin
             
             select max(id) into id_sucursal from sucursal;   --Selecciono la sucursal de la reserva, aleatoriamente
             id_sucursal := dbms_random.value(1, id_sucursal);
-            select nombre into nombre_sucursal from sucursal where id = id_sucursal;
+            select direccion into nombre_sucursal from sucursal where id = id_sucursal;
 
-            
-            select sysdate-round(dbms_random.value(0,60),0) into fecha_rv from dual; --fecha aleatoria.
+            select sysdate-round(dbms_random.value(0,8),0) into fecha_rv from dual; --fecha aleatoria entre 8 dias.
             
             cant_personas:= dbms_random.value(2,8); --Se calcula la cantidad de personas de la reserva
             
@@ -64,7 +63,7 @@ Begin
             
             select count(q.sucur) into validate 
             from (
-                    select s.nombre sucur, sum(m.cant_puestos) puestos 
+                    select s.direccion sucur, sum(m.cant_puestos) puestos 
                     from mesa m
                     join sucursal s
                     on s.id = m.id_sucursal
@@ -78,7 +77,7 @@ Begin
                     ) mr
                     on mr.id_sucursal = s.id and mr.id_mesa = m.id
                     where mr.id_mesa is null
-                    group by s.nombre
+                    group by s.direccion
                 ) q
             where q.puestos >= cant_personas
             and q.sucur like nombre_sucursal;
@@ -92,8 +91,8 @@ Begin
                 
             else if (validate = 1) then
                 iterador:=cant_personas;
-                INSERT INTO RESERVA (ID,fecha_reserva, CANT_PERSONAS,ID_SUCURSAL,ID_CLIENTE,ID_MESA) 
-                VALUES(SEQ_RESERVA.nextval, fecha(fecha_rv,fecha_rv), to_number(cant_personas), to_number(id_sucursal), to_number(id_persona), 1);
+                INSERT INTO RESERVA (ID,fecha_reserva, CANT_PERSONAS,ID_SUCURSAL,ID_CLIENTE) 
+                VALUES(SEQ_RESERVA.nextval, fecha(fecha_rv,fecha_rv), to_number(cant_personas), to_number(id_sucursal), to_number(id_persona));
                 
                 select max(id) into reserva_id from reserva;
                 
@@ -114,8 +113,8 @@ Begin
                     ) mr
                     on mr.id_sucursal = s.id and mr.id_mesa = m.id
                     where mr.id_mesa is null
-                    and s.nombre like nombre_sucursal
-                    and m.cant_puestos <=cant_personas;
+                    and s.direccion like nombre_sucursal
+                    and m.cant_puestos <=cant_personas +1;
                     
                     insert into mesa_reservada values(seq_mesa_reservada.nextval, reserva_id, resta,id_sucursal);
                     
