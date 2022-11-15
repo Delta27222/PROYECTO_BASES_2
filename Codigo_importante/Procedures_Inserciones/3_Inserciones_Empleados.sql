@@ -16,7 +16,6 @@ Begin
     BEGIN
         --INSERT
         numero_aleatorio := round(dbms_random.value(1,41));
-        select sysdate-round(dbms_random.value(0,60),0) into fecha_egreso from dual; --fecha aleatoria.
         select sysdate-round(dbms_random.value(0,60),0) into fecha_contratacion from dual; --fecha aleatoria.
         declare 
            type array_t is varray(6) of varchar2(30);
@@ -27,7 +26,7 @@ Begin
             motivo_egreso:=array(numero_aleatorio);
         end;
 
-        INSERT INTO EMPLEADO VALUES(SEQ_EMPLEADO.NEXTVAL,EMPTY_BLOB(), fecha_egreso,fecha(fecha_contratacion,fecha_contratacion),motivo_egreso,id_emnpleado,id_sucursal) Returning FOTO INTO V_TEMP;
+        INSERT INTO EMPLEADO VALUES(SEQ_EMPLEADO.NEXTVAL,EMPTY_BLOB(),fecha(fecha_contratacion,fecha_contratacion),motivo_egreso,id_emnpleado,id_sucursal) Returning FOTO INTO V_TEMP;
 
         V_NAME_IMAGE := numero_aleatorio||'.jpg';
 
