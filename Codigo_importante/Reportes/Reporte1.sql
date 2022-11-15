@@ -24,7 +24,7 @@ begin
 --        group by p.nombre, avg.porcentaje, s.direccion, c.tipo, p.precio, p.foto, p.descripcion
 --        order by avg.sucursal, p.nombre, c.tipo;
 
-            select s.direccion, p.nombre, p.foto, d.tipo, d.total_plato, concat(((d.total_plato*100)/t.total),'%'), p.precio porcentaje
+            select s.direccion, p.nombre, p.foto, d.tipo, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
             from sucursal s
             join (
                 select s.direccion, count(pc.id_plato) total --QUERY QUE TRAE LA CANTIDAD DE PLATOS SOLICITADOS POR SUCURSAL
@@ -36,7 +36,7 @@ begin
                 group by s.direccion
             ) t
             on t.direccion = s.direccion
-            join (
+             join (
                 select s.direccion, p.nombre plato_nombre, c.tipo, count(pc.id_plato) total_plato --QUERY QUE TRAE LA CANTIDAD DE PEDIDOS POR PLATO POR SUCURSAL
                 from sucursal s
                 join consumo c
@@ -49,7 +49,8 @@ begin
             ) d
             on d.direccion = s.direccion
             join plato p
-            on p.nombre = d.plato_nombre;
+            on p.nombre = d.plato_nombre
+            order by s.direccion;
 end;
 
 
