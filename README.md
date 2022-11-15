@@ -13,8 +13,8 @@
 
 > Reportes:
 
-- [x] 1)  Reporte de Platos de mayor demanda.                       (EL PROBLEMA ES EL GROUP BY ------SE ESTA ARREGLANDO)
-- [x] 2)  Reporte de Menú del día.
+- [x] 1)  Reporte de Platos de mayor demanda.                       (FUNCIONANDO EN JASPERSOFT 😀)
+- [x] 2)  Reporte de Menú del día.                                  (FUNCIONANDO EN JASPERSOFT 😀)
 - [ ] 3)  Reporte de historico de Promociones.
 - [ ] 4)  Reporte de Empleados del Restaurante por Sucursal y su Rol.
 - [x] 5)  Reporte de Sucursales del Restaurante.                    (EL PROBLEMA ES EL GROUP BY ------SE ESTA ARREGLANDO)
