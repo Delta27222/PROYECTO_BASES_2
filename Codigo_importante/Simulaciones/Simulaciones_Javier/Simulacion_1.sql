@@ -1,4 +1,3 @@
-set serveroutput on
 create or replace procedure simulacion_1
 is
 Begin
