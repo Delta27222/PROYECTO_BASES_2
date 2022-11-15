@@ -127,3 +127,40 @@ insert into plato_dia values (SEQ_PLATO_DIA.NEXTVAL, fecha(to_date('15-NOV-22'),
 insert into plato_dia values (SEQ_PLATO_DIA.NEXTVAL, fecha(to_date('15-NOV-22'),to_date('15-NOV-22')),58);
 insert into plato_dia values (SEQ_PLATO_DIA.NEXTVAL, fecha(to_date('15-NOV-22'),to_date('15-NOV-22')),17);
 insert into plato_dia values (SEQ_PLATO_DIA.NEXTVAL, fecha(to_date('15-NOV-22'),to_date('15-NOV-22')),15);
+
+
+
+
+--------------------------------------INSERTANDO PROMOCIONES
+
+--Calculo del precio final del producto con descuento
+create or replace function precio_final_calculado (id_plato number, descuento number) return number
+is 
+    x number;
+    precio_final number;
+    precio_plato number;
+Begin
+       select p.precio.monto into precio_plato from plato p where id = id_plato;  --Encuentro el valor del precio del plato 
+       x := (descuento * precio_plato)/100;
+       precio_final := precio_plato - x;
+       return precio_final;
+end;
+
+
+--De esta manera hacemos las inserciones
+insert into promocion values(2, 'descuento 50', 50, monto(monto.VALIDATE_MONTO(precion_final_calculado(10, 50)),'$'),fecha(to_date('14-OCT-22'),to_date('14-OCT-22')),10); 
+
+
+
+--Procedure para hacer inserciones de promociones
+create or replace procedure INSERTAR_PROMOCION(DESCRIPCION VARCHAR, DESCUENTO NUMBER, FECHA_INICIO DATE, FECHA_FIN DATE, ID_PLATO NUMBER)
+is 
+    PRECIO_FINAL NUMBER;
+Begin
+    PRECIO_FINAL :=PRECIO_FINAL_CALCULADO(ID_PLATO, DESCUENTO);
+    INSERT INTO PROMOCION VALUES(SEQ_PROMOCION.NEXTVAL, DESCRIPCION,DESCUENTO,monto(monto.VALIDATE_MONTO(PRECIO_FINAL),'$'),fecha(FECHA_INICIO,FECHA_FIN), ID_PLATO);
+end;
+
+
+
+EXECUTE INSERTAR_PROMOCION( 'Promo 50%',50, TO_DATE('12-NOV-22'),TO_DATE('15-NOV-22'),10);
