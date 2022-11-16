@@ -1,4 +1,4 @@
-create or replace procedure reporte_5 (cur in out sys_refcursor, fecha_ini DATE, fecha_fin DATE, nombre_sucursal sucursal.direccion%type, erol rol.nombre%type)
+create or replace procedure reporte_4 (cur in out sys_refcursor, fecha_ini DATE, fecha_fin DATE, nombre_sucursal sucursal.direccion%type, erol rol.nombre%type)
 is
 begin
     if (fecha_ini is not null) and (fecha_fin is not null) and (nombre_sucursal is not null) and (erol is not null) then
