@@ -4,7 +4,7 @@ begin
     
     if (fecha_ini is not null) and (fecha_fin is not null) and (tipo_plato is not null) and (tipo_consumo is not null) then
         open cur for
-                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
+                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, fecha_ini, fecha_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
                 from sucursal s
                 join (
                     select s.direccion, count(pc.id_plato) total --QUERY QUE TRAE LA CANTIDAD DE PLATOS SOLICITADOS POR SUCURSAL
@@ -43,7 +43,7 @@ begin
     
     if (fecha_ini is null) and (fecha_fin is not null) and (tipo_plato is not null) and (tipo_consumo is not null) then
         open cur for
-                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
+                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, fecha_ini, fecha_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
                 from sucursal s
                 join (
                     select s.direccion, count(pc.id_plato) total --QUERY QUE TRAE LA CANTIDAD DE PLATOS SOLICITADOS POR SUCURSAL
@@ -82,7 +82,7 @@ begin
     
     if (fecha_ini is not null) and (fecha_fin is null) and (tipo_plato is not null) and (tipo_consumo is not null) then
         open cur for
-                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
+                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, fecha_ini, fecha_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
                 from sucursal s
                 join (
                     select s.direccion, count(pc.id_plato) total --QUERY QUE TRAE LA CANTIDAD DE PLATOS SOLICITADOS POR SUCURSAL
@@ -121,7 +121,7 @@ begin
     
     if (fecha_ini is not null) and (fecha_fin is not null) and (tipo_plato is  null) and (tipo_consumo is not null) then
         open cur for
-                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
+                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, fecha_ini, fecha_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
                 from sucursal s
                 join (
                     select s.direccion, count(pc.id_plato) total --QUERY QUE TRAE LA CANTIDAD DE PLATOS SOLICITADOS POR SUCURSAL
@@ -159,7 +159,7 @@ begin
     
     if (fecha_ini is not null) and (fecha_fin is not null) and (tipo_plato is not null) and (tipo_consumo is null) then
         open cur for
-                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
+                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, fecha_ini, fecha_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
                 from sucursal s
                 join (
                     select s.direccion, count(pc.id_plato) total --QUERY QUE TRAE LA CANTIDAD DE PLATOS SOLICITADOS POR SUCURSAL
@@ -197,7 +197,7 @@ begin
     
     if (fecha_ini is null) and (fecha_fin is null) and (tipo_plato is not null) and (tipo_consumo is not null) then
         open cur for
-                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
+                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, fecha_ini, fecha_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
                 from sucursal s
                 join (
                     select s.direccion, count(pc.id_plato) total --QUERY QUE TRAE LA CANTIDAD DE PLATOS SOLICITADOS POR SUCURSAL
@@ -235,7 +235,7 @@ begin
     
     if (fecha_ini is  null) and (fecha_fin is not null) and (tipo_plato is  null) and (tipo_consumo is not null) then
         open cur for
-                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
+                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, fecha_ini, fecha_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
                 from sucursal s
                 join (
                     select s.direccion, count(pc.id_plato) total --QUERY QUE TRAE LA CANTIDAD DE PLATOS SOLICITADOS POR SUCURSAL
@@ -273,7 +273,7 @@ begin
     
     if (fecha_ini is null) and (fecha_fin is not null) and (tipo_plato is not null) and (tipo_consumo is  null) then
         open cur for
-                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
+                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo,fecha_ini, fecha_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
                 from sucursal s
                 join (
                     select s.direccion, count(pc.id_plato) total --QUERY QUE TRAE LA CANTIDAD DE PLATOS SOLICITADOS POR SUCURSAL
@@ -311,7 +311,7 @@ begin
     
     if (fecha_ini is not null) and (fecha_fin is null) and (tipo_plato is null) and (tipo_consumo is not null) then
         open cur for
-                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
+                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, fecha_ini, fecha_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
                 from sucursal s
                 join (
                     select s.direccion, count(pc.id_plato) total --QUERY QUE TRAE LA CANTIDAD DE PLATOS SOLICITADOS POR SUCURSAL
@@ -349,7 +349,7 @@ begin
     
     if (fecha_ini is not null) and (fecha_fin is null) and (tipo_plato is not null) and (tipo_consumo is null) then
         open cur for
-                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
+                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, fecha_ini, fecha_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
                 from sucursal s
                 join (
                     select s.direccion, count(pc.id_plato) total --QUERY QUE TRAE LA CANTIDAD DE PLATOS SOLICITADOS POR SUCURSAL
@@ -387,7 +387,7 @@ begin
     
     if (fecha_ini is null) and (fecha_fin is null) and (tipo_plato is null) and (tipo_consumo is not null) then
         open cur for
-                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
+                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, fecha_ini, fecha_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
                 from sucursal s
                 join (
                     select s.direccion, count(pc.id_plato) total --QUERY QUE TRAE LA CANTIDAD DE PLATOS SOLICITADOS POR SUCURSAL
@@ -423,7 +423,7 @@ begin
     
     if (fecha_ini is null) and (fecha_fin is null) and (tipo_plato is not null) and (tipo_consumo is null) then
         open cur for
-                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
+                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, fecha_ini, fecha_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
                 from sucursal s
                 join (
                     select s.direccion, count(pc.id_plato) total --QUERY QUE TRAE LA CANTIDAD DE PLATOS SOLICITADOS POR SUCURSAL
@@ -459,7 +459,7 @@ begin
     
     if (fecha_ini is null) and (fecha_fin is not null) and (tipo_plato is null) and (tipo_consumo is null) then
         open cur for
-                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
+                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, fecha_ini, fecha_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
                 from sucursal s
                 join (
                     select s.direccion, count(pc.id_plato) total --QUERY QUE TRAE LA CANTIDAD DE PLATOS SOLICITADOS POR SUCURSAL
@@ -495,7 +495,7 @@ begin
     
     if (fecha_ini is not null) and (fecha_fin is null) and (tipo_plato is null) and (tipo_consumo is null) then
         open cur for
-                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
+                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, fecha_ini, fecha_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
                 from sucursal s
                 join (
                     select s.direccion, count(pc.id_plato) total --QUERY QUE TRAE LA CANTIDAD DE PLATOS SOLICITADOS POR SUCURSAL
@@ -531,7 +531,7 @@ begin
     
     if (fecha_ini is null) and (fecha_fin is null) and (tipo_plato is null) and (tipo_consumo is null) then
         open cur for
-                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
+                select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, fecha_ini, fecha_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
                 from sucursal s
                 join (
                     select s.direccion, count(pc.id_plato) total --QUERY QUE TRAE LA CANTIDAD DE PLATOS SOLICITADOS POR SUCURSAL
