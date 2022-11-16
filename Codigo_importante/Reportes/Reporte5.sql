@@ -18,7 +18,7 @@ open cur for
         where valoracion in (8,9,10)
         group by id_sucursal
     )b
-    on b.id_sucursal = s.id
-    group by s.direccion, r.nombre, r.logo, s.mapa, b.promotores, a.cant_respuestas;
+    on b.id_sucursal = s.id;
+    --group by s.direccion, r.nombre, r.logo, s.mapa, b.promotores, a.cant_respuestas;
 end;    
 
