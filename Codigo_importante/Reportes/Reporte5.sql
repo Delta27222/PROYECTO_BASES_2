@@ -13,9 +13,8 @@ open cur for
     ) a 
     on a.id_sucursal = s.id
     join (
-        select id_sucursal, count(valoracion) promotores
+        select id_sucursal, sum(valoracion) promotores
         from encuesta e
-        where valoracion in (8,9,10)
         group by id_sucursal
     )b
     on b.id_sucursal = s.id;
