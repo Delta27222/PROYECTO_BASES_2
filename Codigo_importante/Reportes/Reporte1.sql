@@ -7,7 +7,7 @@ declare
     vr_tipo_consumo consumo.tipo%type;
     vr_tipo_plato plato.categoria%type;
 begin
-
+    
     if (tipo_consumo is null) then
         vr_tipo_consumo:= '%';
     else vr_tipo_consumo:= tipo_consumo;
