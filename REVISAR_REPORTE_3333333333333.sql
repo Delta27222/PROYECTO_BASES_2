@@ -2,29 +2,13 @@
 
 execute INSERTAR_PROMOCION_CON_ID_PUESTO(4,'3x1', 50, to_date('14-NOV-22'), to_date('16-NOV-22'), 11);
 
+insert into plato_dia values (1,fecha(to_date('14-OCT-22'),to_date('14-OCT-22')), 10)
+insert into plato_dia values (2,fecha(to_date('14-OCT-22'),to_date('14-OCT-22')), 12);
+insert into plato_dia values (3,fecha(to_date('14-OCT-22'),to_date('14-OCT-22')), 13);
+insert into plato_dia values (7,fecha(to_date('14-OCT-22'),to_date('14-OCT-22')), 36);
 
-SELECT * FROM PLATO 
-
-
-SELECT P.PRECIO_FIN.MONTO FROM PROMOCION P
-
-
-
-create or replace  procedure reporte_3(fecha_inicio date, fecha_fin date, intervalo_inferior number, intervalo_superior number)
-is 
-Begin
-    select promo.fecha_promo.fecha_inicio, promo.fecha_promo.fecha_fin, promo.descripcion, pla.nombre, pla.foto, promo.descuento, pla.precio.monto, promo.precio_fin.monto from promocion promo
-    inner join Plato pla on  promo.id_plato = pla.id; 
-end;
-
-
-
-SELECT P.PRECIO_FIN.MONTO FROM PROMOCION P
-
-
-select pla.precio.monto from plato pla
-
-
-
-
+insert into plato_dia values (11,fecha(to_date('15-OCT-22'),to_date('15-OCT-22')), 10)
+insert into plato_dia values (4,fecha(to_date('15-OCT-22'),to_date('15-OCT-22')), 60);
+insert into plato_dia values (5,fecha(to_date('2-OCT-22'),to_date('2-OCT-22')), 45);
+insert into plato_dia values (6,fecha(to_date('25-OCT-22'),to_date('25-OCT-22')), 58);
 

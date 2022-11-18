@@ -1,23 +1,23 @@
-create or replace procedure reporte_1(cur in out sys_refcursor, fecha_ini in out DATE, fecha_fin in out DATE, tipo_consumo in out String, tipo_plato in out String)
+create or replace procedure reporte_1(cur in out sys_refcursor, fecha_ini  DATE, fecha_fin  DATE, tipo_consumo  String, tipo_plato String)
 is 
 begin
 
-    if (tipo_consumo is null) then
-        tipo_consumo:= '%';
-    end if;
-    
-    if (tipo_plato is null) then
-        tipo_plato:='%';
-    end if;
-    
-    if (fecha_ini is null) then
-        select min(c.fecha_consumo.fecha_inicio) into fecha_ini from consumo c;
-    end if;
-    
-    if (fecha_fin is null) then
-        select max(c.fecha_consumo.fecha_inicio) into fecha_fin from consumo c;
-    end if;
-    
+--    if (tipo_consumo is null) then
+--        tipo_consumo:= '%';
+--    end if;
+--    
+--    if (tipo_plato is null) then
+--        tipo_plato:='%';
+--    end if;
+--    
+--    if (fecha_ini is null) then
+--        select min(c.fecha_consumo.fecha_inicio) into fecha_ini from consumo c;
+--    end if;
+--    
+--    if (fecha_fin is null) then
+--        select max(c.fecha_consumo.fecha_inicio) into fecha_fin from consumo c;
+--    end if;
+--    
         open cur for
             select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, t.f_ini, t.f_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
             from sucursal s
