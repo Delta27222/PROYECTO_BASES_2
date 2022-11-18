@@ -16,7 +16,7 @@
 - [x] 1)  Reporte de Platos de mayor demanda.                         (FUNCIONANDO EN JASPERSOFT  al 100%😀)
 - [x] 2)  Reporte de Menú del día.                                    (FUNCIONANDO EN JASPERSOFT 😀, SOLO FALTA REVISAR LO DE LOS NULL)
 - [ ] 3)  Reporte de historico de Promociones.                        (FUNCIONANDO EN JASPERSOFT 😀, SOLO FALTA REVISAR LO DE LOS NULL)
-- [ ] 4)  Reporte de Empleados del Restaurante por Sucursal y su Rol.
+- [ ] 4)  Reporte de Empleados del Restaurante por Sucursal y su Rol.         (FUNCIONANDO EN JASPERSOFT  al 100%😀)
 - [x] 5)  Reporte de Sucursales del Restaurante.                    (EL PROBLEMA ES EL GROUP BY ------SE ESTA ARREGLANDO)
 - [ ] 6)  Reporte de horarios de mayor y menor afluencia por Restaurante y Sucursal.
 - [ ] 7)  Reporte de control de Inventario de mercancía.
