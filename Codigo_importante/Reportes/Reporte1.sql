@@ -1,4 +1,4 @@
-create or replace procedure reporte_1(cur in out sys_refcursor, fecha_ini out DATE, fecha_fin out DATE, tipo_consumo out String, tipo_plato out String)
+create or replace procedure reporte_1(cur in out sys_refcursor, fecha_ini in out DATE, fecha_fin in out DATE, tipo_consumo in out String, tipo_plato in out String)
 is 
 begin
 
