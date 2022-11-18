@@ -2,7 +2,7 @@
 
 > Simulaciones:
 
-- [x] 1)  Escenario Reservar una mesa.   (DA EL ERROR PORQUE SE ESTA USANDO UNA VARIABLE DE NOMBRE DE SUCURSAL, NO EXISTE) 
+- [x] 1)  Escenario Reservar una mesa.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [ ] 2)  Escenario Compra de Inventario.
 - [x] 3)  Escenario de Contratación de Grupo.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [ ] 4)  Escenario Realizar Consumo.
@@ -13,10 +13,10 @@
 
 > Reportes:
 
-- [x] 1)  Reporte de Platos de mayor demanda.                       (FUNCIONANDO EN JASPERSOFT 😀)
-- [x] 2)  Reporte de Menú del día.                                  (FUNCIONANDO EN JASPERSOFT 😀)
-- [ ] 3)  Reporte de historico de Promociones.
-- [ ] 4)  Reporte de Empleados del Restaurante por Sucursal y su Rol.
+- [x] 1)  Reporte de Platos de mayor demanda.                         (FUNCIONANDO EN JASPERSOFT  al 100%😀)
+- [x] 2)  Reporte de Menú del día.                                    (FUNCIONANDO EN JASPERSOFT 😀, SOLO FALTA REVISAR LO DE LOS NULL)
+- [ ] 3)  Reporte de historico de Promociones.                        (FUNCIONANDO EN JASPERSOFT 😀, SOLO FALTA REVISAR LO DE LOS NULL)
+- [ ] 4)  Reporte de Empleados del Restaurante por Sucursal y su Rol.         (FUNCIONANDO EN JASPERSOFT  al 100%😀)
 - [x] 5)  Reporte de Sucursales del Restaurante.                    (EL PROBLEMA ES EL GROUP BY ------SE ESTA ARREGLANDO)
 - [ ] 6)  Reporte de horarios de mayor y menor afluencia por Restaurante y Sucursal.
 - [ ] 7)  Reporte de control de Inventario de mercancía.
