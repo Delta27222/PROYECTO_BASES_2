@@ -2,7 +2,7 @@ create or replace procedure reporte_5 (cur in out sys_refcursor)
 is
 begin
 open cur for
-    select s.direccion, r.nombre, r.logo, s.mapa, (b.promotores*100)/a.cant_respuestas
+    select s.direccion, r.nombre, r.logo, s.mapa, (b.promotores*10)/a.cant_respuestas
     from sucursal s
     join restaurante r
     on r.id = s.id_restaurante
