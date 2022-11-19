@@ -28,7 +28,7 @@
 - [ ] 13)  Reporte de reservas realizadas en el Restaurante.
 - [ ] 14)  Reporte de Grupos musicales contratados para la Sucursal del Restaurante.
 
-![This is an image]([https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQetv0pyynebw9fsjAYFVAmMdAailUHKOwFpdRKwkmw_dvECF7JwJT-BeFn5R2WzUR-Ex0&usqp=CAU](http://images3.memedroid.com/images/UPLOADED77/607ba2383c43c.jpeg))
+![This is an image](https://images3.memedroid.com/images/UPLOADED77/607ba2383c43c.jpeg)
 
 
 
