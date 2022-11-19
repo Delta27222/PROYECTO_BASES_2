@@ -13,11 +13,11 @@
 
 > Reportes:
 
-- [x] 1)  Reporte de Platos de mayor demanda.<---->LISTO
-- [x] 2)  Reporte de Menú del día.<---->LISTO
-- [x] 3)  Reporte de historico de Promociones.<---->LISTO
-- [x] 4)  Reporte de Empleados del Restaurante por Sucursal y su Rol.<---->LISTO
-- [x] 5)  Reporte de Sucursales del Restaurante.<---->LISTO
+- [x] 1)  Reporte de Platos de mayor demanda.<---->LISTO - recuerdo haberlo visto en funcionamiento con datos, pero igual primero probarlo
+- [x] 2)  Reporte de Menú del día.<---->LISTO - Probado y visualizado en jaspersoft😆
+- [x] 3)  Reporte de historico de Promociones.<---->LISTO - Probado y visualizado en jaspersoft😆
+- [x] 4)  Reporte de Empleados del Restaurante por Sucursal y su Rol.<---->LISTO - Probado y visualizado en jaspersoft😆
+- [x] 5)  Reporte de Sucursales del Restaurante.<---->LISTO - Probado y visualizado en jaspersoft😆
 - [ ] 6)  Reporte de horarios de mayor y menor afluencia por Restaurante y Sucursal.
 - [ ] 7)  Reporte de control de Inventario de mercancía.
 - [ ] 8)  Reporte de ingresos y egresos por Sucursal de Restaurante.
@@ -32,7 +32,3 @@
 
 > Consideraciones: 
   - En los reportes en donde tenemos rangos de fecha, verificamos que la fecha de inicio este dentro de un rango de fechas (los parametros). No deberiamos verificar       ambas fechas fecha de inicio y fecha de fin de cada uno de los valores insertados?? (reportes 1,3,4)
-
-
-
-
