@@ -28,7 +28,10 @@
 - [ ] 13)  Reporte de reservas realizadas en el Restaurante.
 - [ ] 14)  Reporte de Grupos musicales contratados para la Sucursal del Restaurante.
 
-![This is an image](https://images3.memedroid.com/images/UPLOADED77/607ba2383c43c.jpeg)
+![This is an image](https://images3.memedroid.com/images/UPLOADED77/607ba2383c43c.jpeg) 👇👇👇👇👇
+
+> Consideraciones: 
+  - En los reportes en donde tenemos rangos de fecha, verificamos que la fecha de inicio este dentro de un rango de fechas (los parametros). No deberiamos verificar       ambas fechas fecha de inicio y fecha de fin de cada uno de los valores insertados??
 
 
 
