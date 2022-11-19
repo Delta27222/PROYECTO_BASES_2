@@ -170,6 +170,7 @@ EXECUTE INSERTAR_PROMOCION( 'Promo 50%',50, TO_DATE('12-NOV-22'),TO_DATE('15-NOV
 --MANEJO DE HORAS EN LA BASE DE DATOS 
 
 --Este formato no muestra la hora
+
 ALTER SESSION SET NLS_DATE_FORMAT = 'DD-MON-RR';
 select promo.fecha_promo.fecha_inicio,promo.fecha_promo.fecha_fin
 from promocion promo
@@ -183,8 +184,15 @@ from promocion promo
 select  TO_CHAR(promo.fecha_promo.fecha_inicio,'DD/MM/YYYY HH24:MI:SS'),promo.fecha_promo.fecha_fin
 from promocion promo
 
---Esto muestra la fecha como char, pero solo la hora
+--Esto muestra la fecha como char, pero solo la hora completa
 select  TO_CHAR(promo.fecha_promo.fecha_inicio,'HH24:MI:SS'),promo.fecha_promo.fecha_fin
+from promocion promo
+
+--INSERTAMOS UNA PROMOCION CON FECHA Y HORA
+    EXECUTE INSERTAR_PROMOCION_CON_ID_PUESTO(1000, 'Promo 50%',50, TO_DATE('2022-12-01 10:00:00', 'YYYY-MM-DD HH24:MI:SS'),TO_DATE('2022-12-01 10:20:00', 'YYYY-MM-DD HH24:MI:SS'),10);
+
+--Esto muestra la fecha como char, pero solo la hora de la fecha
+select  TO_CHAR(promo.fecha_promo.fecha_inicio,'HH24'),promo.fecha_promo.fecha_fin
 from promocion promo
 
 --Asi se inserta un tipo date pero con la hora, y no da problemas pero cuando esta con el formato con hora activo
