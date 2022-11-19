@@ -15,7 +15,7 @@
 
 - [x] 1)  Reporte de Platos de mayor demanda.<---->LISTO
 - [x] 2)  Reporte de Menú del día.<---->LISTO
-- [ ] 3)  Reporte de historico de Promociones.(FUNCIONANDO EN JASPERSOFT 😀, SOLO FALTA REVISAR LO DE LOS NULL)
+- [X] 3)  Reporte de historico de Promociones.<---->LISTO
 - [x] 4)  Reporte de Empleados del Restaurante por Sucursal y su Rol.<---->LISTO
 - [x] 5)  Reporte de Sucursales del Restaurante.<---->LISTO
 - [ ] 6)  Reporte de horarios de mayor y menor afluencia por Restaurante y Sucursal.
