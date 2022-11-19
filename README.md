@@ -15,7 +15,7 @@
 
 - [x] 1)  Reporte de Platos de mayor demanda.<---->LISTO
 - [x] 2)  Reporte de Menú del día.<---->LISTO
-- [X] 3)  Reporte de historico de Promociones.<---->LISTO
+- [x] 3)  Reporte de historico de Promociones.<---->LISTO
 - [x] 4)  Reporte de Empleados del Restaurante por Sucursal y su Rol.<---->LISTO
 - [x] 5)  Reporte de Sucursales del Restaurante.<---->LISTO
 - [ ] 6)  Reporte de horarios de mayor y menor afluencia por Restaurante y Sucursal.
@@ -28,4 +28,8 @@
 - [ ] 13)  Reporte de reservas realizadas en el Restaurante.
 - [ ] 14)  Reporte de Grupos musicales contratados para la Sucursal del Restaurante.
 
-![This is an image](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQetv0pyynebw9fsjAYFVAmMdAailUHKOwFpdRKwkmw_dvECF7JwJT-BeFn5R2WzUR-Ex0&usqp=CAU)
+![This is an image]([https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQetv0pyynebw9fsjAYFVAmMdAailUHKOwFpdRKwkmw_dvECF7JwJT-BeFn5R2WzUR-Ex0&usqp=CAU](http://images3.memedroid.com/images/UPLOADED77/607ba2383c43c.jpeg)
+
+
+
+
