@@ -1,36 +1,14 @@
---/////////////////////////////////////////////////////////////////////
---//////////////////////INSERCIONES PARA LA ENTREGA 1
---/////////////////////////////////////////////////////////////////////
-            --INSERTS REALIZADOS:
-            --
-            --PERSONA
-            --EMPLEADO
-            --ENCUESTA
-            --MESA
-            --PLATO
-            --PUESTO
-            --RESTAURANTE
-            --ROL
-            --SUCURSAL
-            --
-            --INSERTS QUE NO SON NECESARIOS:
-            --COMPRA  --TRIGGER DE CONSUMO
-            --CONSUMO --SIMULACION 4 (REALIZAR CONSUMO)
-            --CONTABILIDAD --TRIGGER DE COMPRA, INVENTARIO Y SIMULACION 5 (PAGAR NOMINA)
-            --GRUPO  --SIMULACION 3 (CONTRATACION DE GRUPO)
-            --INVENTARIO --SIMULACION 2 (COMPRA DE INVENTARIO)
-            --PAGO --TRIGGER DE COMPRA
-            --PLATO_CONSUMIDO -- TRIGGER DE REALIZAR CONSUMO
-            --PLATO_DIA --VOY HACER UN PROCEDURE INSERTAR_PLATO_DIA
-            --PROMOCION --VOY HACER UN PROCEDURE INSERTAR_PROMOCION
-            --RESERVA --SIMULACION 1
-            --MESA_RESERVADA --SIMULACION 1
-            --
-            --FALTAN
-            --PRODUCTO
-            --RECETA --ME FALTA PRODUCTO
-            --EVENTO 
+drop table  "PUESTO" cascade constraints PURGE;
 
+select * from restaurante;
+select * from sucursal;
+select * from plato;
+select * from persona;
+select * from empleado;
+select * from rol;
+select * from puesto;
+select * from mesa;
+select * from encuesta;
 
 
 --/////////////////////////////// INSERTAR RESTAURATE
@@ -178,7 +156,7 @@ INSERT INTO PERSONA values (SEQ_PERSONA.NEXTVAL, (SELECT (12000111+ABS(MOD(dbms_
 INSERT INTO PERSONA values (SEQ_PERSONA.NEXTVAL, (SELECT (12000111+ABS(MOD(dbms_random.random,28472023))) FROM   dual), 'Ivan', 'Gavira', 'F', (SELECT (4120000000+ABS(MOD(dbms_random.random,9999999))) FROM   dual), (select sysdate-round(dbms_random.value(0,13000),0) from dual), 1,1);
 INSERT INTO PERSONA values (SEQ_PERSONA.NEXTVAL, (SELECT (12000111+ABS(MOD(dbms_random.random,28472023))) FROM   dual), 'Alexandra', 'Dos Santos', 'M', (SELECT (4120000000+ABS(MOD(dbms_random.random,9999999))) FROM   dual), (select sysdate-round(dbms_random.value(0,13000),0) from dual), 1,1);
 INSERT INTO PERSONA values (SEQ_PERSONA.NEXTVAL, (SELECT (12000111+ABS(MOD(dbms_random.random,28472023))) FROM   dual), 'Rubena', 'Thacuerta', 'F', (SELECT (4120000000+ABS(MOD(dbms_random.random,9999999))) FROM   dual), (select sysdate-round(dbms_random.value(0,13000),0) from dual), 1,1);
-
+select * from empleado
 
 
 --/////////////////////////////// INSERTAR EMPLEADO
@@ -189,9 +167,9 @@ EXECUTE INSERTAR_EMPLEADO(4,1);
 EXECUTE INSERTAR_EMPLEADO(5,1);
 EXECUTE INSERTAR_EMPLEADO(6,1);
 EXECUTE INSERTAR_EMPLEADO(7,1);
-EXECUTE INSERTAR_EMPLEADO(8,2);
-EXECUTE INSERTAR_EMPLEADO(9,2);
-EXECUTE INSERTAR_EMPLEADO(10,2);
+EXECUTE INSERTAR_EMPLEADO(8,1);
+EXECUTE INSERTAR_EMPLEADO(9,1);
+EXECUTE INSERTAR_EMPLEADO(10,1);
 EXECUTE INSERTAR_EMPLEADO(11,2);
 EXECUTE INSERTAR_EMPLEADO(12,2);
 EXECUTE INSERTAR_EMPLEADO(13,2);
@@ -199,51 +177,69 @@ EXECUTE INSERTAR_EMPLEADO(14,2);
 EXECUTE INSERTAR_EMPLEADO(15,2);
 EXECUTE INSERTAR_EMPLEADO(16,2);
 EXECUTE INSERTAR_EMPLEADO(17,2);
-EXECUTE INSERTAR_EMPLEADO(18,3);
-EXECUTE INSERTAR_EMPLEADO(19,3);
-EXECUTE INSERTAR_EMPLEADO(20,3);
+EXECUTE INSERTAR_EMPLEADO(18,2);
+EXECUTE INSERTAR_EMPLEADO(19,2);
+EXECUTE INSERTAR_EMPLEADO(20,2);
 EXECUTE INSERTAR_EMPLEADO(21,3);
 EXECUTE INSERTAR_EMPLEADO(22,3);
 EXECUTE INSERTAR_EMPLEADO(23,3);
 EXECUTE INSERTAR_EMPLEADO(24,3);
-EXECUTE INSERTAR_EMPLEADO(25,8);
+EXECUTE INSERTAR_EMPLEADO(25,3);
 EXECUTE INSERTAR_EMPLEADO(26,3);
-EXECUTE INSERTAR_EMPLEADO(27,4);
-EXECUTE INSERTAR_EMPLEADO(28,4);
-EXECUTE INSERTAR_EMPLEADO(29,4);
-EXECUTE INSERTAR_EMPLEADO(30,4);
+EXECUTE INSERTAR_EMPLEADO(27,3);
+EXECUTE INSERTAR_EMPLEADO(28,3);
+EXECUTE INSERTAR_EMPLEADO(29,3);
+EXECUTE INSERTAR_EMPLEADO(30,3);
 EXECUTE INSERTAR_EMPLEADO(31,4);
 EXECUTE INSERTAR_EMPLEADO(32,4);
 EXECUTE INSERTAR_EMPLEADO(33,4);
-EXECUTE INSERTAR_EMPLEADO(34,8);
-EXECUTE INSERTAR_EMPLEADO(35,5);
-EXECUTE INSERTAR_EMPLEADO(36,5);
-EXECUTE INSERTAR_EMPLEADO(37,5);
-EXECUTE INSERTAR_EMPLEADO(38,5);
-EXECUTE INSERTAR_EMPLEADO(39,5);
-EXECUTE INSERTAR_EMPLEADO(40,5);
+EXECUTE INSERTAR_EMPLEADO(34,4);
+EXECUTE INSERTAR_EMPLEADO(35,4);
+EXECUTE INSERTAR_EMPLEADO(36,4);
+EXECUTE INSERTAR_EMPLEADO(37,4);
+EXECUTE INSERTAR_EMPLEADO(38,4);
+EXECUTE INSERTAR_EMPLEADO(39,4);
+EXECUTE INSERTAR_EMPLEADO(40,4);
 EXECUTE INSERTAR_EMPLEADO(41,5);
 EXECUTE INSERTAR_EMPLEADO(44,5);
 EXECUTE INSERTAR_EMPLEADO(45,5);
-EXECUTE INSERTAR_EMPLEADO(60,6);
-EXECUTE INSERTAR_EMPLEADO(61,6);
-EXECUTE INSERTAR_EMPLEADO(62,6);
-EXECUTE INSERTAR_EMPLEADO(63,6);
-EXECUTE INSERTAR_EMPLEADO(64,6);
-EXECUTE INSERTAR_EMPLEADO(65,6);
-EXECUTE INSERTAR_EMPLEADO(66,6);
+EXECUTE INSERTAR_EMPLEADO(60,5);
+EXECUTE INSERTAR_EMPLEADO(61,5);
+EXECUTE INSERTAR_EMPLEADO(62,5);
+EXECUTE INSERTAR_EMPLEADO(63,5);
+EXECUTE INSERTAR_EMPLEADO(64,5);
+EXECUTE INSERTAR_EMPLEADO(65,5);
+EXECUTE INSERTAR_EMPLEADO(66,5);
 EXECUTE INSERTAR_EMPLEADO(67,6);
-EXECUTE INSERTAR_EMPLEADO(50,7);
-EXECUTE INSERTAR_EMPLEADO(51,7);
-EXECUTE INSERTAR_EMPLEADO(52,7);
-EXECUTE INSERTAR_EMPLEADO(53,7);
-EXECUTE INSERTAR_EMPLEADO(54,7);
-EXECUTE INSERTAR_EMPLEADO(55,7);
-EXECUTE INSERTAR_EMPLEADO(56,8);
-EXECUTE INSERTAR_EMPLEADO(57,8);
-EXECUTE INSERTAR_EMPLEADO(58,8);
-EXECUTE INSERTAR_EMPLEADO(59,8);
-
+EXECUTE INSERTAR_EMPLEADO(50,6);
+EXECUTE INSERTAR_EMPLEADO(51,6);
+EXECUTE INSERTAR_EMPLEADO(52,6);
+EXECUTE INSERTAR_EMPLEADO(53,6);
+EXECUTE INSERTAR_EMPLEADO(54,6);
+EXECUTE INSERTAR_EMPLEADO(55,6);
+EXECUTE INSERTAR_EMPLEADO(56,6);
+EXECUTE INSERTAR_EMPLEADO(57,6);
+EXECUTE INSERTAR_EMPLEADO(58,6);
+EXECUTE INSERTAR_EMPLEADO(59,7);
+EXECUTE INSERTAR_EMPLEADO(60,7);
+EXECUTE INSERTAR_EMPLEADO(61,7);
+EXECUTE INSERTAR_EMPLEADO(62,7);
+EXECUTE INSERTAR_EMPLEADO(63,7);
+EXECUTE INSERTAR_EMPLEADO(64,7);
+EXECUTE INSERTAR_EMPLEADO(65,7);
+EXECUTE INSERTAR_EMPLEADO(66,7);
+EXECUTE INSERTAR_EMPLEADO(67,7);
+EXECUTE INSERTAR_EMPLEADO(68,7);
+EXECUTE INSERTAR_EMPLEADO(69,8);
+EXECUTE INSERTAR_EMPLEADO(70,8);
+EXECUTE INSERTAR_EMPLEADO(71,8);
+EXECUTE INSERTAR_EMPLEADO(72,8);
+EXECUTE INSERTAR_EMPLEADO(73,8);
+EXECUTE INSERTAR_EMPLEADO(74,8);
+EXECUTE INSERTAR_EMPLEADO(75,8);
+EXECUTE INSERTAR_EMPLEADO(76,8);
+EXECUTE INSERTAR_EMPLEADO(77,8);
+EXECUTE INSERTAR_EMPLEADO(78,8);
 
 --/////////////////////////////// INSERTAR ROLES
 
@@ -260,6 +256,14 @@ INSERT INTO ROL VALUES (SEQ_ROL.NEXTVAL, 'Bartender', 'Se encarga de preparar lo
 INSERT INTO ROL VALUES (SEQ_ROL.NEXTVAL, 'Valet', 'Se encarga de controlar el area del estacionamiento cuidando los autos', monto(2150, 'Bs'), 0);
 
 --///////////////////////////////INSERTAR PUESTOS
+
+ drop sequence SEQ_PUESTO;
+
+
+CREATE SEQUENCE SEQ_PUESTO --nombre de la secuencia
+START WITH 1 --la secuencia empieza por 1
+INCREMENT BY 1 --se incrementa de uno en uno
+NOMAXVALUE; --no tiene valor maximo
 
 
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
@@ -283,8 +287,6 @@ INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 1,seq_puesto.currval,10);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
-(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 1,seq_puesto.currval,11);
-INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 2,seq_puesto.currval,1);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 2,seq_puesto.currval,2);
@@ -304,8 +306,6 @@ INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 2,seq_puesto.currval,9);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 2,seq_puesto.currval,10);
-INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
-(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 2,seq_puesto.currval,11);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 3,seq_puesto.currval,1);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
@@ -327,8 +327,6 @@ INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 3,seq_puesto.currval,10);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
-(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 3,seq_puesto.currval,11);
-INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 4,seq_puesto.currval,1);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 4,seq_puesto.currval,2);
@@ -348,8 +346,6 @@ INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 4,seq_puesto.currval,9);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 4,seq_puesto.currval,10);
-INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
-(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 4,seq_puesto.currval,11);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 5,seq_puesto.currval,1);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
@@ -371,8 +367,6 @@ INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 5,seq_puesto.currval,10);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
-(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 5,seq_puesto.currval,11);
-INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 6,seq_puesto.currval,1);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 6,seq_puesto.currval,2);
@@ -392,8 +386,6 @@ INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 6,seq_puesto.currval,9);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 6,seq_puesto.currval,10);
-INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
-(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 6,seq_puesto.currval,11);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 7,seq_puesto.currval,1);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
@@ -415,8 +407,6 @@ INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 7,seq_puesto.currval,10);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
-(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 7,seq_puesto.currval,11);
-INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 8,seq_puesto.currval,1);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 8,seq_puesto.currval,2);
@@ -436,8 +426,6 @@ INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 8,seq_puesto.currval,9);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 8,seq_puesto.currval,10);
-INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
-(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 8,seq_puesto.currval,11);
 
 
 --/////////////////////////////// INSERTAR MESA
@@ -505,7 +493,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 10, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -513,7 +501,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 10, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -521,7 +509,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 10, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -529,7 +517,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 10, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -537,7 +525,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 10, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -545,7 +533,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 9, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -553,7 +541,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 9, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -561,7 +549,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 9, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -569,7 +557,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 9, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -577,7 +565,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -585,7 +573,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -593,7 +581,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 9, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -601,7 +589,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 8, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -609,7 +597,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -617,15 +605,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
-(SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
-INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
-'Restaurante',
-8, 
-NULL,
-FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -633,7 +613,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 8, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -641,31 +621,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 8, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
-(SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
-INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
-'Restaurante',
-(SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
-NULL,
-FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
-(SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
-INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
-'Restaurante',
-(SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
-NULL,
-FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
-(SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
-INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
-'Restaurante',
-(SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
-NULL,
-FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -673,7 +629,31 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 8, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
+null);
+INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
+'Restaurante',
+(SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
+NULL,
+FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
+null);
+INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
+'Restaurante',
+(SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
+NULL,
+FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
+null);
+INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
+'Restaurante',
+(SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
+NULL,
+FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -681,7 +661,15 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 8, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
+null);
+INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
+'Restaurante',
+8, 
+NULL,
+FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -689,7 +677,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -697,7 +685,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -705,7 +693,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 10, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -713,7 +701,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -721,7 +709,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 10, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -729,7 +717,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -737,7 +725,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 10, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -745,7 +733,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -753,7 +741,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -761,7 +749,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -769,7 +757,7 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -777,343 +765,374 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 10, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 10, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 10, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 10, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 10, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 10, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 10, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 10, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
-(SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 8, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 8, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 8, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 8, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 7, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 7, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 7, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 7, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 9, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 9, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 9, 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
+INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
+'Comida',
+(SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
+NULL,
+FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
+INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
+'Comida',
+(SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
+NULL,
+FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
+INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
+'Comida',
+(SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
+NULL,
+FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
+INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
+'Comida',
+(SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
+NULL,
+FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 null);
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
@@ -1121,47 +1140,14 @@ INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL,
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Comida',
 (SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
 NULL,
 FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
+(SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
-INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
-'Comida',
-(SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
-NULL,
-FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
-(SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
-INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
-'Comida',
-(SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
-NULL,
-FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
-(SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
-INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
-'Comida',
-(SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
-NULL,
-FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
-(SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
-INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
-'Comida',
-(SELECT (1+ABS(MOD(dbms_random.random,10))) FROM DUAL), 
-NULL,
-FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
-(SELECT (1+ABS(MOD(dbms_random.random,100))) FROM DUAL),
-(SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
-null);
-
+(SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
