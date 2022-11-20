@@ -1,6 +1,37 @@
 --/////////////////////////////////////////////////////////////////////
 --//////////////////////INSERCIONES PARA LA ENTREGA 1
 --/////////////////////////////////////////////////////////////////////
+            --INSERTS REALIZADOS:
+            --
+            --PERSONA
+            --EMPLEADO
+            --ENCUESTA
+            --MESA
+            --PLATO
+            --PUESTO
+            --RESTAURANTE
+            --ROL
+            --SUCURSAL
+            --
+            --INSERTS QUE NO SON NECESARIOS:
+            --COMPRA  --TRIGGER DE CONSUMO
+            --CONSUMO --SIMULACION 4 (REALIZAR CONSUMO)
+            --CONTABILIDAD --TRIGGER DE COMPRA, INVENTARIO Y SIMULACION 5 (PAGAR NOMINA)
+            --GRUPO  --SIMULACION 3 (CONTRATACION DE GRUPO)
+            --INVENTARIO --SIMULACION 2 (COMPRA DE INVENTARIO)
+            --PAGO --TRIGGER DE COMPRA
+            --PLATO_CONSUMIDO -- TRIGGER DE REALIZAR CONSUMO
+            --PLATO_DIA --VOY HACER UN PROCEDURE INSERTAR_PLATO_DIA
+            --PROMOCION --VOY HACER UN PROCEDURE INSERTAR_PROMOCION
+            --RESERVA --SIMULACION 1
+            --MESA_RESERVADA --SIMULACION 1
+            --
+            --FALTAN
+            --PRODUCTO
+            --RECETA --ME FALTA PRODUCTO
+            --EVENTO 
+
+
 
 --/////////////////////////////// INSERTAR RESTAURATE
 
