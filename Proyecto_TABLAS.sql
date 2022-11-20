@@ -1,83 +1,83 @@
 --*************************************************************************CREACION DE LOS TDA'S*************************************************************************--
-
---FECHA*******************************************************************************************
-CREATE OR REPLACE TYPE FECHA AS OBJECT(
-    FECHA_INICIO DATE,
-    FECHA_FIN DATE,
-    
-    STATIC FUNCTION VALIDATE_DATE ( FECHA_INICIO DATE, FECHA_FIN DATE ) RETURN DATE
-);
-
-CREATE OR REPLACE TYPE BODY FECHA AS
-    STATIC FUNCTION VALIDATE_DATE( FECHA_INICIO DATE, FECHA_FIN DATE )
-    RETURN DATE
-    IS
-    BEGIN
-        --RAISE_APPLICATION_ERROR(-20001,'ERROR EN LAS FECHAS');
-        IF ((FECHA_FIN > FECHA_INICIO)) THEN
-                RETURN FECHA_INICIO;
-        ELSE
-            RAISE_APPLICATION_ERROR(-20001,'ERROR EN LAS FECHAS');
-        END IF;
-    END;
-END;
-
---MONTO*******************************************************************************************
-CREATE OR REPLACE TYPE MONTO AS OBJECT(
-    MONTO NUMBER,
-    UNIDAD_MONTO VARCHAR(3),
-    
-    STATIC FUNCTION VALIDATE_MONTO ( MONTO NUMBER) RETURN NUMBER
-);
-
-
-CREATE OR REPLACE TYPE BODY MONTO AS
-    STATIC FUNCTION VALIDATE_MONTO( MONTO NUMBER )
-    RETURN NUMBER
-    IS
-    BEGIN
-        IF ((MONTO > 0)) THEN
-            RETURN MONTO;
-        ELSE
-            RAISE_APPLICATION_ERROR(-20001,'ERROR, EL MONTO DEBE SER POSITIVO');
-        END IF;
-    END;
-END;
-
---ACUMULADO*******************************************************************************************VERIFICAR ESTO
-CREATE OR REPLACE TYPE ACUMULADO AS OBJECT(
-    CANT_ACUMULADO NUMBER,
-    
-    STATIC FUNCTION CALCULATE_ACUM_INV ( ID_SUCURSAL NUMBER, ID_PRODUCTO NUMBER) RETURN NUMBER,
-    STATIC FUNCTION CALCULATE_ACUM_CONT ( ID_SUCURSAL NUMBER) RETURN NUMBER
-);
-
-CREATE OR REPLACE TYPE BODY ACUMULADO AS
-    STATIC FUNCTION CALCULATE_ACUM_INV(  ID_SUCURSAL NUMBER, ID_PRODUCTO NUMBER)
-    RETURN NUMBER
-    IS
-    BEGIN
-        ---------ACA HACES LO QUE TENGAS QUE HACER
-        dbms_output.put_line('ACA HACES LO QUE TENGAS QUE HACER');
-    END;
-    STATIC FUNCTION CALCULATE_ACUM_CONT( ID_SUCURSAL NUMBER)
-    RETURN NUMBER
-    IS
-    BEGIN
-        ---------ACA HACES LO QUE TENGAS QUE HACER
-        dbms_output.put_line('ACA HACES LO QUE TENGAS QUE HACER');
-    END;
-END;
-
-CREATE OR REPLACE TYPE BODY ACUMULADO AS
-    STATIC FUNCTION CALCULATE_ACUM_CONT( ID_SUCURSAL NUMBER)
-    RETURN NUMBER
-    IS
-    BEGIN
-        ---------ACA HACES LO QUE TENGAS QUE HACER
-        dbms_output.put_line('ACA HACES LO QUE TENGAS QUE HACER');
-    END;
-END;
+--
+----FECHA*******************************************************************************************
+--CREATE OR REPLACE TYPE FECHA AS OBJECT(
+--    FECHA_INICIO DATE,
+--    FECHA_FIN DATE,
+--    
+--    STATIC FUNCTION VALIDATE_DATE ( FECHA_INICIO DATE, FECHA_FIN DATE ) RETURN DATE
+--);
+--
+--CREATE OR REPLACE TYPE BODY FECHA AS
+--    STATIC FUNCTION VALIDATE_DATE( FECHA_INICIO DATE, FECHA_FIN DATE )
+--    RETURN DATE
+--    IS
+--    BEGIN
+--        --RAISE_APPLICATION_ERROR(-20001,'ERROR EN LAS FECHAS');
+--        IF ((FECHA_FIN > FECHA_INICIO)) THEN
+--                RETURN FECHA_INICIO;
+--        ELSE
+--            RAISE_APPLICATION_ERROR(-20001,'ERROR EN LAS FECHAS');
+--        END IF;
+--    END;
+--END;
+--
+----MONTO*******************************************************************************************
+--CREATE OR REPLACE TYPE MONTO AS OBJECT(
+--    MONTO NUMBER,
+--    UNIDAD_MONTO VARCHAR(3),
+--    
+--    STATIC FUNCTION VALIDATE_MONTO ( MONTO NUMBER) RETURN NUMBER
+--);
+--
+--
+--CREATE OR REPLACE TYPE BODY MONTO AS
+--    STATIC FUNCTION VALIDATE_MONTO( MONTO NUMBER )
+--    RETURN NUMBER
+--    IS
+--    BEGIN
+--        IF ((MONTO > 0)) THEN
+--            RETURN MONTO;
+--        ELSE
+--            RAISE_APPLICATION_ERROR(-20001,'ERROR, EL MONTO DEBE SER POSITIVO');
+--        END IF;
+--    END;
+--END;
+--
+----ACUMULADO*******************************************************************************************VERIFICAR ESTO
+--CREATE OR REPLACE TYPE ACUMULADO AS OBJECT(
+--    CANT_ACUMULADO NUMBER,
+--    
+--    STATIC FUNCTION CALCULATE_ACUM_INV ( ID_SUCURSAL NUMBER, ID_PRODUCTO NUMBER) RETURN NUMBER,
+--    STATIC FUNCTION CALCULATE_ACUM_CONT ( ID_SUCURSAL NUMBER) RETURN NUMBER
+--);
+--
+--CREATE OR REPLACE TYPE BODY ACUMULADO AS
+--    STATIC FUNCTION CALCULATE_ACUM_INV(  ID_SUCURSAL NUMBER, ID_PRODUCTO NUMBER)
+--    RETURN NUMBER
+--    IS
+--    BEGIN
+--        ---------ACA HACES LO QUE TENGAS QUE HACER
+--        dbms_output.put_line('ACA HACES LO QUE TENGAS QUE HACER');
+--    END;
+--    STATIC FUNCTION CALCULATE_ACUM_CONT( ID_SUCURSAL NUMBER)
+--    RETURN NUMBER
+--    IS
+--    BEGIN
+--        ---------ACA HACES LO QUE TENGAS QUE HACER
+--        dbms_output.put_line('ACA HACES LO QUE TENGAS QUE HACER');
+--    END;
+--END;
+--
+--CREATE OR REPLACE TYPE BODY ACUMULADO AS
+--    STATIC FUNCTION CALCULATE_ACUM_CONT( ID_SUCURSAL NUMBER)
+--    RETURN NUMBER
+--    IS
+--    BEGIN
+--        ---------ACA HACES LO QUE TENGAS QUE HACER
+--        dbms_output.put_line('ACA HACES LO QUE TENGAS QUE HACER');
+--    END;
+--END;
 
 --*************************************************************************CREACION DE LOS TDA'S*************************************************************************--
 
@@ -102,7 +102,7 @@ NOMAXVALUE; --no tiene valor maximo
 CREATE TABLE SUCURSAL (
     ID NUMBER PRIMARY KEY NOT NULL,
     DIRECCION VARCHAR(20) NOT NULL,
-    DESCRIPCION VARCHAR(20) NOT NULL,
+    DESCRIPCION VARCHAR(100) NOT NULL,
     MAPA BLOB DEFAULT EMPTY_BLOB() NOT NULL,
     HORARIO VARCHAR(20) NOT NULL,
     ID_RESTAURANTE NUMBER NOT NULL,
@@ -209,7 +209,7 @@ CREATE TABLE PERSONA(
     CONSTRAINT CH_CEDULA CHECK (CEDULA < 100000000),
     CONSTRAINT CH_TELEFONO CHECK (TELEFONO < 100000000000),
     CONSTRAINT CH_GENERO CHECK (GENERO = 'M' OR GENERO = 'F' OR GENERO = 'N/A'),
-    CONSTRAINT CH_CLIENTE_EMPLEADO CHECK ((CLIENTE = 1 AND EMPLEADO = 0) OR (CLIENTE = 0 AND EMPLEADO = 1)) --VERIFICAR, PORQUE UN EMPLEADO PUEDE SER CLIENTE
+    CONSTRAINT CH_CLIENTE_EMPLEADO CHECK ((CLIENTE = 1 AND EMPLEADO = 0) OR (CLIENTE = 0 AND EMPLEADO = 1) OR (CLIENTE = 1 AND EMPLEADO = 1))--VERIFICAR, PORQUE UN EMPLEADO PUEDE SER CLIENTE
 );
 
 
@@ -224,7 +224,7 @@ CREATE TABLE EMPLEADO(
     ID NUMBER PRIMARY KEY NOT NULL,
     FOTO BLOB DEFAULT EMPTY_BLOB() NOT NULL,
     FECHA_CONTRATACION FECHA , --OJO
-    MOTIVO_EGRESO VARCHAR(30) NOT NULL,
+    MOTIVO_EGRESO VARCHAR(30),
     ID_PERSONA NUMBER NOT NULL,
     ID_SUCURSAL NUMBER NOT NULL,
     
@@ -243,8 +243,8 @@ CREATE TABLE PLATO(
     ID NUMBER NOT NULL,
     PRECIO MONTO, -------OJO
     FOTO BLOB DEFAULT EMPTY_BLOB() NOT NULL,
-    DESCRIPCION VARCHAR(50) NOT NULL,
-    CATEGORIA VARCHAR(30) NOT NULL,
+    DESCRIPCION VARCHAR(120) NOT NULL,
+    CATEGORIA VARCHAR(40) NOT NULL,
 
     CONSTRAINT UQ_ID_PLATO UNIQUE(ID),
     CONSTRAINT CH_CATEGORIA CHECK (CATEGORIA = 'Comida' OR CATEGORIA = 'Bebida' OR CATEGORIA = 'Postre') --Aca se puede cambiar o agregar  categorias nuevas
@@ -261,11 +261,11 @@ CREATE TABLE ENCUESTA(
     ID NUMBER PRIMARY KEY NOT NULL,
     TIPO VARCHAR(30) NOT NULL,
     VALORACION NUMBER NOT NULL,
-    OBSERVACION VARCHAR(100) NOT NULL,
+    OBSERVACION VARCHAR(100),
     FECHA_ENCUESTA FECHA, --OJO
     ID_CLIENTE NUMBER NOT NULL,
-    ID_SUCURSAL NUMBER NULL,
-    ID_PLATO NUMBER NULL,
+    ID_SUCURSAL NUMBER,
+    ID_PLATO NUMBER,
     
     CONSTRAINT  FK_SUCURSAL_ENCUESTA FOREIGN KEY (ID_SUCURSAL) REFERENCES SUCURSAL(ID),
     CONSTRAINT  FK_CLIENTE_ENCUESTA FOREIGN KEY (ID_CLIENTE) REFERENCES PERSONA(CEDULA),
@@ -285,7 +285,7 @@ NOMAXVALUE; --no tiene valor maximo
 CREATE TABLE ROL(
     ID NUMBER NOT NULL,
     NOMBRE VARCHAR(20) PRIMARY KEY NOT NULL,
-    FUNCION VARCHAR(30) NOT NULL,
+    FUNCION VARCHAR(530) NOT NULL,
     SUELDO MONTO,                -----OJO,
     PUESTO_UNICO NUMBER NOT NULL,
 
@@ -386,7 +386,7 @@ NOMAXVALUE; --no tiene valor maximo
 CREATE TABLE CONTABILIDAD (
     ID NUMBER PRIMARY KEY NOT NULL,
     MONTO NUMBER NOT NULL,
-    FECHA_RESERVA FECHA , --OJO
+    FECHA FECHA , --OJO
     ACUMULADO ACUMULADO, --OJO
     ID_SUCURSAL NUMBER NOT NULL,
     
@@ -536,55 +536,55 @@ NOMAXVALUE; --no tiene valor maximo
 --*************************************************************************CREACION DE LAS TABLAS*************************************************************************--
 
 --******************************************************************  DROPS DE LAS TABLAS Y SECUENCIAS********************************************************************--
-
-drop table "USER_PROYECTO"."RESTAURANTE" cascade constraints PURGE;
-drop table "USER_PROYECTO"."SUCURSAL" cascade constraints PURGE;
-drop table "USER_PROYECTO"."PRODUCTO" cascade constraints PURGE;
-drop table "USER_PROYECTO"."INVENTARIO" cascade constraints PURGE;
-drop table "USER_PROYECTO"."GRUPO" cascade constraints PURGE;
-drop table "USER_PROYECTO"."EVENTO" cascade constraints PURGE;
-drop table "USER_PROYECTO"."PERSONA" cascade constraints PURGE;
-drop table "USER_PROYECTO"."EMPLEADO" cascade constraints PURGE;
-drop table "USER_PROYECTO"."PLATO" cascade constraints PURGE;
-drop table "USER_PROYECTO"."ENCUESTA" cascade constraints PURGE;
-drop table "USER_PROYECTO"."ROL" cascade constraints PURGE;
-drop table "USER_PROYECTO"."PUESTO" cascade constraints PURGE;
-drop table "USER_PROYECTO"."MESA" cascade constraints PURGE;
-drop table "USER_PROYECTO"."RESERVA" cascade constraints PURGE;
-drop table "USER_PROYECTO"."MESA_RESERVADA" cascade constraints PURGE;
-drop table "USER_PROYECTO"."CONTABILIDAD" cascade constraints PURGE;
-drop table "USER_PROYECTO"."COMPRA" cascade constraints PURGE;
-drop table "USER_PROYECTO"."PAGO" cascade constraints PURGE;
-drop table "USER_PROYECTO"."RECETA" cascade constraints PURGE;
-drop table "USER_PROYECTO"."CONSUMO" cascade constraints PURGE;
-drop table "USER_PROYECTO"."PLATO_CONSUMIDO" cascade constraints PURGE;
-drop table "USER_PROYECTO"."PLATO_DIA" cascade constraints PURGE;
-drop table "USER_PROYECTO"."PROMOCION" cascade constraints PURGE;
-
-
- drop sequence SEQ_SUCURSAL;
- drop sequence SEQ_INVENTARIO;
- drop sequence SEQ_EVENTO;
- drop sequence SEQ_GRUPO;
- drop sequence SEQ_EVENTO;
- drop sequence SEQ_EMPLEADO;
- drop sequence SEQ_PUESTO;
- drop sequence SEQ_ROL;
- drop sequence SEQ_RESERVA;
- drop sequence SEQ_MESA_RESERVADA;
- drop sequence SEQ_MESA;
- drop sequence SEQ_CONTABILIDAD;
- drop sequence SEQ_RESTAURANTE;
- drop sequence SEQ_CONSUMO;
- drop sequence SEQ_RECETA;
- drop sequence SEQ_PLATO;
- drop sequence SEQ_PLATO_CONSUMIDO;
- drop sequence SEQ_PLATO_DIA;
- drop sequence SEQ_PROMOCION;
-drop sequence SEQ_COMPRA;
-drop sequence SEQ_PAGO;
-drop sequence SEQ_PRODUCTO;
-drop sequence SEQ_ENCUESTA;
+--
+--drop table  "RESTAURANTE" cascade constraints PURGE;
+--drop table  "SUCURSAL" cascade constraints PURGE;
+--drop table  "PRODUCTO" cascade constraints PURGE;
+--drop table  "INVENTARIO" cascade constraints PURGE;
+--drop table  "GRUPO" cascade constraints PURGE;
+--drop table  "EVENTO" cascade constraints PURGE;
+--drop table  "PERSONA" cascade constraints PURGE;
+--drop table  "EMPLEADO" cascade constraints PURGE;
+--drop table  "PLATO" cascade constraints PURGE;
+--drop table  "ENCUESTA" cascade constraints PURGE;
+--drop table  "ROL" cascade constraints PURGE;
+--drop table  "PUESTO" cascade constraints PURGE;
+--drop table  "MESA" cascade constraints PURGE;
+--drop table  "RESERVA" cascade constraints PURGE;
+--drop table  "MESA_RESERVADA" cascade constraints PURGE;
+--drop table  "CONTABILIDAD" cascade constraints PURGE;
+--drop table  "COMPRA" cascade constraints PURGE;
+--drop table  "PAGO" cascade constraints PURGE;
+--drop table  "RECETA" cascade constraints PURGE;
+--drop table  "CONSUMO" cascade constraints PURGE;
+--drop table  "PLATO_CONSUMIDO" cascade constraints PURGE;
+--drop table  "PLATO_DIA" cascade constraints PURGE;
+--drop table  "PROMOCION" cascade constraints PURGE;
+--
+--
+-- drop sequence SEQ_SUCURSAL;
+-- drop sequence SEQ_INVENTARIO;
+-- drop sequence SEQ_EVENTO;
+-- drop sequence SEQ_GRUPO;
+-- drop sequence SEQ_EVENTO;
+-- drop sequence SEQ_EMPLEADO;
+-- drop sequence SEQ_PUESTO;
+-- drop sequence SEQ_ROL;
+-- drop sequence SEQ_RESERVA;
+-- drop sequence SEQ_MESA_RESERVADA;
+-- drop sequence SEQ_MESA;
+-- drop sequence SEQ_CONTABILIDAD;
+-- drop sequence SEQ_RESTAURANTE;
+-- drop sequence SEQ_CONSUMO;
+-- drop sequence SEQ_RECETA;
+-- drop sequence SEQ_PLATO;
+-- drop sequence SEQ_PLATO_CONSUMIDO;
+-- drop sequence SEQ_PLATO_DIA;
+-- drop sequence SEQ_PROMOCION;
+--drop sequence SEQ_COMPRA;
+--drop sequence SEQ_PAGO;
+--drop sequence SEQ_PRODUCTO;
+--drop sequence SEQ_ENCUESTA;
 
 
 --******************************************************************  DROPS DE LAS TABLAS Y SECUENCIAS********************************************************************--
@@ -594,7 +594,7 @@ drop sequence SEQ_ENCUESTA;
 
 
 --VERIFICAR SI SE PUEDE CAMBIAR ESTE FORMATO DENTRO DE UN PROCEDURE OJO
-ALTER SESSION SET NLS_DATE_FORMAT = 'DD-MON-RR';
+--ALTER SESSION SET NLS_DATE_FORMAT = 'DD-MON-RR';
 
 
 
