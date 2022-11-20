@@ -37,6 +37,9 @@ begin
             dbms_output.put(' ');
             select apellido into nombre_cliente from persona where id = vr_id_cliente;
             dbms_output.put_line(nombre_cliente);
+            dbms_output.put('Monto a pagar: ');
+            dbms_output.put(mont_total);
+            dbms_output.put_line(' Bs');
             dbms_output.put_line('--------------------------------------------------------');
         
         cant_pagos:=dbms_random.value(1,8);
