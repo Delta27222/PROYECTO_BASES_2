@@ -7,7 +7,7 @@
 - [x] 3)  Escenario de Contratación de Grupo.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [ ] 4)  Escenario Realizar Consumo.
 - [ ] 5)  Escenario Pagar Nómina a Trabajadores.
-- [ ] 6)  Escenario Contratación de personal.
+- [x] 6)  Escenario Contratación de personal.     (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [x] 7)  Escenario Compra de Sucursal.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [x] 8)  Escenario Realizar Compra.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 
