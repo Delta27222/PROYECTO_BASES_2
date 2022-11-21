@@ -1,32 +1,22 @@
-drop table  "PUESTO" cascade constraints PURGE;
-
-select * from restaurante;
-select * from sucursal;
-select * from plato;
-select * from persona;
-select * from empleado;
-select * from rol;
-select * from puesto;
-select * from mesa;
-select * from encuesta;
-
-
---/////////////////////////////// INSERTAR RESTAURATE
-
 EXECUTE INSERTAR_RESTAURANTE();
 
---/////////////////////////////// INSERTAR SUCURSALES
+select * from restaurante;
 
-EXECUTE INSERTAR_SUCURSALES('Barquisimeto', 'Buena', '08:00 am - 20:00 pm');
-EXECUTE INSERTAR_SUCURSALES('Los Teques', 'Mejor', '09:00 am - 20:00 pm');
-EXECUTE INSERTAR_SUCURSALES('Valencia', 'Suculenta', '08:00 am - 20:00 pm');
-EXECUTE INSERTAR_SUCURSALES('Valera', 'Buena', '10:00 am - 23:00 pm');
-EXECUTE INSERTAR_SUCURSALES('El Hatillo', 'Buena', '10:00 am - 03:00 Am');
-EXECUTE INSERTAR_SUCURSALES('Las Mercedes', 'Barata', '08:00 am - 20:00 pm');
-EXECUTE INSERTAR_SUCURSALES('Coro', 'Gran', '10:00 am - 23:00 pm');
-EXECUTE INSERTAR_SUCURSALES('Carora', 'Buena', '08:00 am - 20:00 pm');
+------------------------------------------------------------------------------------------------------
+EXECUTE INSERTAR_SUCURSALES('Barquisimeto', 'Buena', '08:00 am - 20:00 pm');9999
+EXECUTE INSERTAR_SUCURSALES('Los Teques', 'Mejor', '09:00 am - 20:00 pm');9999
+EXECUTE INSERTAR_SUCURSALES('Valencia', 'Suculenta', '08:00 am - 20:00 pm');9999
+EXECUTE INSERTAR_SUCURSALES('Valera', 'Buena', '10:00 am - 23:00 pm');9999
+EXECUTE INSERTAR_SUCURSALES('La Guaira', 'Buena', '10:00 am - 03:00 Am');9999
+EXECUTE INSERTAR_SUCURSALES('Las Mercedes', 'Barata', '08:00 am - 20:00 pm');9999
+EXECUTE INSERTAR_SUCURSALES('Coro', 'Gran', '10:00 am - 23:00 pm');9999
+EXECUTE INSERTAR_SUCURSALES('Carora', 'Buena', '08:00 am - 20:00 pm');9999
+EXECUTE INSERTAR_SUCURSALES('El Hatillo', 'Excelente', '08:00 am - 20:00 pm');
+EXECUTE INSERTAR_SUCURSALES('Guatire', 'Buena', '10:00 am - 03:00 Am');
 
---/////////////////////////////// INSERTAR PLATOS
+select * from sucursal;
+
+------------------------------------------------------------------------------------------------------
 EXECUTE INSERTAR_PLATO('Agua', 20, 'Bebida');
 EXECUTE INSERTAR_PLATO('Cerveza', 30, 'Bebida');
 EXECUTE INSERTAR_PLATO('Chicha', 37, 'Bebida');
@@ -59,9 +49,9 @@ EXECUTE INSERTAR_PLATO('Tiramisu', 38, 'Postre');
 EXECUTE INSERTAR_PLATO('Tres leche', 40, 'Postre');
 EXECUTE INSERTAR_PLATO('Turron', 29, 'Postre');
 
+select * from plato;
 
---/////////////////////////////// INSERTAR PERSONA
-
+------------------------------------------------------------------------------------------------------
 INSERT INTO PERSONA values (SEQ_PERSONA.NEXTVAL, (SELECT (12000111+ABS(MOD(dbms_random.random,28472023))) FROM   dual), 'Javier', 'Rojas', 'M', (SELECT (4140000000+ABS(MOD(dbms_random.random,9999999))) FROM   dual), (select sysdate-round(dbms_random.value(0,13000),0) from dual), 1,1);
 INSERT INTO PERSONA values (SEQ_PERSONA.NEXTVAL, (SELECT (12000111+ABS(MOD(dbms_random.random,28472023))) FROM   dual), 'Favio', 'Rojas', 'M', (SELECT (4120000000+ABS(MOD(dbms_random.random,9999999))) FROM   dual), (select sysdate-round(dbms_random.value(0,13000),0) from dual), 1,1);
 INSERT INTO PERSONA values (SEQ_PERSONA.NEXTVAL, (SELECT (12000111+ABS(MOD(dbms_random.random,28472023))) FROM   dual), 'Angel', 'Hernandez', 'M', (SELECT (4240000000+ABS(MOD(dbms_random.random,9999999))) FROM   dual), (select sysdate-round(dbms_random.value(0,13000),0) from dual), 1,1);
@@ -156,10 +146,10 @@ INSERT INTO PERSONA values (SEQ_PERSONA.NEXTVAL, (SELECT (12000111+ABS(MOD(dbms_
 INSERT INTO PERSONA values (SEQ_PERSONA.NEXTVAL, (SELECT (12000111+ABS(MOD(dbms_random.random,28472023))) FROM   dual), 'Ivan', 'Gavira', 'F', (SELECT (4120000000+ABS(MOD(dbms_random.random,9999999))) FROM   dual), (select sysdate-round(dbms_random.value(0,13000),0) from dual), 1,1);
 INSERT INTO PERSONA values (SEQ_PERSONA.NEXTVAL, (SELECT (12000111+ABS(MOD(dbms_random.random,28472023))) FROM   dual), 'Alexandra', 'Dos Santos', 'M', (SELECT (4120000000+ABS(MOD(dbms_random.random,9999999))) FROM   dual), (select sysdate-round(dbms_random.value(0,13000),0) from dual), 1,1);
 INSERT INTO PERSONA values (SEQ_PERSONA.NEXTVAL, (SELECT (12000111+ABS(MOD(dbms_random.random,28472023))) FROM   dual), 'Rubena', 'Thacuerta', 'F', (SELECT (4120000000+ABS(MOD(dbms_random.random,9999999))) FROM   dual), (select sysdate-round(dbms_random.value(0,13000),0) from dual), 1,1);
-select * from empleado
 
+select * from persona;
 
---/////////////////////////////// INSERTAR EMPLEADO
+------------------------------------------------------------------------------------------------------
 EXECUTE INSERTAR_EMPLEADO(1,1);
 EXECUTE INSERTAR_EMPLEADO(2,1);
 EXECUTE INSERTAR_EMPLEADO(3,1);
@@ -240,9 +230,26 @@ EXECUTE INSERTAR_EMPLEADO(75,8);
 EXECUTE INSERTAR_EMPLEADO(76,8);
 EXECUTE INSERTAR_EMPLEADO(77,8);
 EXECUTE INSERTAR_EMPLEADO(78,8);
+EXECUTE INSERTAR_EMPLEADO(79,9);
+EXECUTE INSERTAR_EMPLEADO(80,9);
+EXECUTE INSERTAR_EMPLEADO(81,9);
+EXECUTE INSERTAR_EMPLEADO(82,9);
+EXECUTE INSERTAR_EMPLEADO(83,9);
+EXECUTE INSERTAR_EMPLEADO(84,9);
+EXECUTE INSERTAR_EMPLEADO(85,9);
+EXECUTE INSERTAR_EMPLEADO(86,9);
+EXECUTE INSERTAR_EMPLEADO(87,9);
+EXECUTE INSERTAR_EMPLEADO(88,9);
+EXECUTE INSERTAR_EMPLEADO(89,10);
+EXECUTE INSERTAR_EMPLEADO(90,10);
+EXECUTE INSERTAR_EMPLEADO(91,10);
+EXECUTE INSERTAR_EMPLEADO(92,10);
+EXECUTE INSERTAR_EMPLEADO(93,10);
+EXECUTE INSERTAR_EMPLEADO(94,10);
 
---/////////////////////////////// INSERTAR ROLES
+select * from empleado;
 
+------------------------------------------------------------------------------------------------------
 INSERT INTO ROL VALUES (SEQ_ROL.NEXTVAL, 'Gerente General', 'Se encarga de llevar todo el orden en la sucursal asignada, tanto en la cocina como afuera de ella', monto(4200, 'Bs'), 1);
 INSERT INTO ROL VALUES (SEQ_ROL.NEXTVAL, 'Subgerente', 'Se encarga de reportar todo relacionado a los meseros, al gerente', monto(3350, 'Bs'), 1);
 INSERT INTO ROL VALUES (SEQ_ROL.NEXTVAL, 'Chef Ejecutivo', 'Se encarga de manejar el menu al publico, promos y platos del dia', monto(3490, 'Bs'), 1);
@@ -255,17 +262,10 @@ INSERT INTO ROL VALUES (SEQ_ROL.NEXTVAL, 'Anfitrion', 'Se encarga de recibir a l
 INSERT INTO ROL VALUES (SEQ_ROL.NEXTVAL, 'Bartender', 'Se encarga de preparar los tragos que se le hayan asignado', monto(2240, 'Bs'), 0);
 INSERT INTO ROL VALUES (SEQ_ROL.NEXTVAL, 'Valet', 'Se encarga de controlar el area del estacionamiento cuidando los autos', monto(2150, 'Bs'), 0);
 
---///////////////////////////////INSERTAR PUESTOS
 
- drop sequence SEQ_PUESTO;
+select * from rol;
 
-
-CREATE SEQUENCE SEQ_PUESTO --nombre de la secuencia
-START WITH 1 --la secuencia empieza por 1
-INCREMENT BY 1 --se incrementa de uno en uno
-NOMAXVALUE; --no tiene valor maximo
-
-
+------------------------------------------------------------------------------------------------------
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 1,seq_puesto.currval,1);
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
@@ -427,9 +427,43 @@ INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
 (select sysdate-round(dbms_random.value(0,90),0) from dual), null), 8,seq_puesto.currval,10);
 
+INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
+(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 9,seq_puesto.currval,1);
+INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
+(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 9,seq_puesto.currval,2);
+INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
+(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 9,seq_puesto.currval,3);
+INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
+(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 9,seq_puesto.currval,4);
+INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
+(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 9,seq_puesto.currval,5);
+INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
+(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 9,seq_puesto.currval,6);
+INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
+(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 9,seq_puesto.currval,7);
+INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
+(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 9,seq_puesto.currval,8);
+INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
+(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 9,seq_puesto.currval,9);
+INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
+(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 9,seq_puesto.currval,10);
 
---/////////////////////////////// INSERTAR MESA
---(ID, NUMMESA, CANTPUESTO, SUCURSALID)
+INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
+(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 10,seq_puesto.currval,1);
+INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
+(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 10,seq_puesto.currval,2);
+INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
+(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 10,seq_puesto.currval,3);
+INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
+(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 10,seq_puesto.currval,4);
+INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
+(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 10,seq_puesto.currval,5);
+INSERT INTO PUESTO VALUES (SEQ_PUESTO.NEXTVAL, FECHA(
+(select sysdate-round(dbms_random.value(0,90),0) from dual), null), 10,seq_puesto.currval,6);
+
+select * from puesto;
+
+------------------------------------------------------------------------------------------------------
 INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 1, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),1);
 INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 2, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),1);
 INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 3, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),1);
@@ -484,9 +518,27 @@ INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 5, (SELECT (2+ABS(MOD(dbms_random.ran
 INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 6, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),8);
 INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 7, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),8);
 INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 8, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),8);
+INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 1, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),9);
+INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 2, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),9);
+INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 3, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),9);
+INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 4, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),9);
+INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 5, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),9);
+INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 6, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),9);
+INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 7, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),9);
+INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 8, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),9);
 
+INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 1, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),10);
+INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 2, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),10);
+INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 3, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),10);
+INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 4, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),10);
+INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 5, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),10);
+INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 6, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),10);
+INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 7, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),10);
+INSERT INTO MESA VALUES (SEQ_MESA.NEXTVAL, 8, (SELECT (2+ABS(MOD(dbms_random.random,5))) FROM DUAL),10);
 
---/////////////////////////////// INSERTAR ENCUESTA PARA SUCURSALES Y RESTAURANE
+select * from mesa;
+
+------------------------------------------------------------------------------------------------------
 
 INSERT INTO ENCUESTA VALUES (SEQ_ENCUESTA.NEXTVAL, 
 'Restaurante',
@@ -1152,8 +1204,9 @@ FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
 
+select * from encuesta;
 
---/////////////////////////////// INSERTAR PRODUCTOS
+------------------------------------------------------------------------------------------------------
 
 EXECUTE INSERTAR_PRODUCTO('Harina Pan', 5, 'Kg', 5);
 EXECUTE INSERTAR_PRODUCTO('Harina de Trigo', 5, 'Kg', 5);
@@ -1203,3 +1256,106 @@ EXECUTE INSERTAR_PRODUCTO('Tequila', 15, 'Lts', 10);
 EXECUTE INSERTAR_PRODUCTO('Refresco', 10, 'Lts', 10);
 EXECUTE INSERTAR_PRODUCTO('Papelon', 5, 'Kg', 5);
 EXECUTE INSERTAR_PRODUCTO('Limones', 15, 'Kg', 10);
+
+select * from producto;
+
+------------------------------------------------------------------------------------------------------
+
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+execute insertar_plato_dia();
+
+select * from plato_dia;
+
+------------------------------------------------------------------------------------------------------
+
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+execute insertar_promocion();
+
+select * from promocion;
+
+
+
+
