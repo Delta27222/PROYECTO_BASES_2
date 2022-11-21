@@ -127,7 +127,7 @@ CREATE TABLE PRODUCTO(
 
     CONSTRAINT UQ_ID_PRODUCTO UNIQUE(ID),
 
-    CONSTRAINT CH_UNIDAD CHECK (UNIDAD = 'Kg' OR UNIDAD = 'Lts' OR UNIDAD = 'Gr'), --Aca se puede cambiar o agregar tipo de unidad
+    CONSTRAINT CH_UNIDAD CHECK (UNIDAD = 'Kg' OR UNIDAD = 'ML' OR UNIDAD = 'Gr'), --Aca se puede cambiar o agregar tipo de unidad
     CONSTRAINT CH_CANT_MINIMA CHECK (CANT_MINIMA > 0)
 );
 
