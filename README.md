@@ -9,7 +9,7 @@
 - [ ] 5)  Escenario Pagar Nómina a Trabajadores.
 - [ ] 6)  Escenario Contratación de personal.
 - [x] 7)  Escenario Compra de Sucursal.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
-- [ ] 8)  Escenario Realizar Compra.
+- [x] 8)  Escenario Realizar Compra.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 
 > Reportes:
 
