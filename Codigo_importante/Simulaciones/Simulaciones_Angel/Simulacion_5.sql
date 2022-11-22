@@ -29,7 +29,7 @@ Begin
         select max(id) into id_sucursal_aleatoria from sucursal;  
         id_sucursal_aleatoria := round(dbms_random.value(1, id_sucursal_aleatoria));
 
-        id_sucursal_aleatoria:=10;--------------------------------------------------------------------------------------------------------------CAMBIAR ESTO ES PARA PROBAR
+        --id_sucursal_aleatoria:=10;--------------------------------------------------------------------------------------------------------------CAMBIAR ESTO ES PARA PROBAR
 
         select direccion into nombre_sucursal from sucursal where id = id_sucursal_aleatoria;
 
@@ -47,16 +47,18 @@ Begin
         dbms_output.put_line('------------------------------------------------------------------------');
 
         select count(id) into cantidad_empleados_de_sucursal from puesto where id_sucursal = id_sucursal_aleatoria;
-
-        monto_unitario_pago_nomina := round(dbms_random.value(10, 20));
-
-        monto_pago_nomina := cantidad_empleados_de_sucursal * monto_unitario_pago_nomina;
+        
+        select pago_completo into monto_pago_nomina from (
+            select p.id_sucursal, sum(r.sueldo.monto) pago_completo from puesto p
+            join rol r
+            on r.id = p.id_rol
+            where id_sucursal = id_sucursal_aleatoria
+            group by p.id_sucursal
+        );
 
         mensaje_para_mostrar := 'La sucursal de ' || nombre_sucursal || ' tiene a su cargo a ' || cantidad_empleados_de_sucursal || ' empleados';
         dbms_output.put_line(mensaje_para_mostrar);   
         dbms_output.put_line('            ');   
-        mensaje_para_mostrar := 'El monto por empleado a cancelar es de ' || monto_unitario_pago_nomina || ' $';
-        dbms_output.put_line(mensaje_para_mostrar);    
         mensaje_para_mostrar := 'Y el monto total por todos los empleados es de ' || monto_pago_nomina || ' $';
         dbms_output.put_line(mensaje_para_mostrar);    
         dbms_output.put_line('------------------------------------------------------------------------');
