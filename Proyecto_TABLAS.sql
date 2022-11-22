@@ -1,88 +1,93 @@
---*************************************************************************CREACION DE LOS TDA'S*************************************************************************--
---
-----FECHA*******************************************************************************************
---CREATE OR REPLACE TYPE FECHA AS OBJECT(
---    FECHA_INICIO DATE,
---    FECHA_FIN DATE,
---    
---    STATIC FUNCTION VALIDATE_DATE ( FECHA_INICIO DATE, FECHA_FIN DATE ) RETURN DATE
---);
---
---CREATE OR REPLACE TYPE BODY FECHA AS
---    STATIC FUNCTION VALIDATE_DATE( FECHA_INICIO DATE, FECHA_FIN DATE )
---    RETURN DATE
---    IS
---    BEGIN
---        --RAISE_APPLICATION_ERROR(-20001,'ERROR EN LAS FECHAS');
---        IF ((FECHA_FIN > FECHA_INICIO)) THEN
---                RETURN FECHA_INICIO;
---        ELSE
---            RAISE_APPLICATION_ERROR(-20001,'ERROR EN LAS FECHAS');
---        END IF;
---    END;
---END;
---
-----MONTO*******************************************************************************************
---CREATE OR REPLACE TYPE MONTO AS OBJECT(
---    MONTO NUMBER,
---    UNIDAD_MONTO VARCHAR(3),
---    
---    STATIC FUNCTION VALIDATE_MONTO ( MONTO NUMBER) RETURN NUMBER
---);
---
---
---CREATE OR REPLACE TYPE BODY MONTO AS
---    STATIC FUNCTION VALIDATE_MONTO( MONTO NUMBER )
---    RETURN NUMBER
---    IS
---    BEGIN
---        IF ((MONTO > 0)) THEN
---            RETURN MONTO;
---        ELSE
---            RAISE_APPLICATION_ERROR(-20001,'ERROR, EL MONTO DEBE SER POSITIVO');
---        END IF;
---    END;
---END;
---
-----ACUMULADO*******************************************************************************************VERIFICAR ESTO
---CREATE OR REPLACE TYPE ACUMULADO AS OBJECT(
---    CANT_ACUMULADO NUMBER,
---    
---    STATIC FUNCTION CALCULATE_ACUM_INV ( ID_SUCURSAL NUMBER, ID_PRODUCTO NUMBER) RETURN NUMBER,
---    STATIC FUNCTION CALCULATE_ACUM_CONT ( ID_SUCURSAL NUMBER) RETURN NUMBER
---);
---
---CREATE OR REPLACE TYPE BODY ACUMULADO AS
---    STATIC FUNCTION CALCULATE_ACUM_INV(  ID_SUCURSAL NUMBER, ID_PRODUCTO NUMBER)
---    RETURN NUMBER
---    IS
---    BEGIN
---        ---------ACA HACES LO QUE TENGAS QUE HACER
---        dbms_output.put_line('ACA HACES LO QUE TENGAS QUE HACER');
---    END;
---    STATIC FUNCTION CALCULATE_ACUM_CONT( ID_SUCURSAL NUMBER)
---    RETURN NUMBER
---    IS
---    BEGIN
---        ---------ACA HACES LO QUE TENGAS QUE HACER
---        dbms_output.put_line('ACA HACES LO QUE TENGAS QUE HACER');
---    END;
---END;
---
---CREATE OR REPLACE TYPE BODY ACUMULADO AS
---    STATIC FUNCTION CALCULATE_ACUM_CONT( ID_SUCURSAL NUMBER)
---    RETURN NUMBER
---    IS
---    BEGIN
---        ---------ACA HACES LO QUE TENGAS QUE HACER
---        dbms_output.put_line('ACA HACES LO QUE TENGAS QUE HACER');
---    END;
---END;
+*************************************************************************CREACION DE LOS TDAS*************************************************************************--
 
---*************************************************************************CREACION DE LOS TDA'S*************************************************************************--
+FECHA*******************************************************************************************
+CREATE OR REPLACE TYPE FECHA AS OBJECT(
+    FECHA_INICIO DATE,
+    FECHA_FIN DATE,
+    
+    STATIC FUNCTION VALIDATE_DATE ( FECHA_INICIO DATE, FECHA_FIN DATE ) RETURN DATE
+);
 
---*************************************************************************CREACION DE LAS TABLAS*************************************************************************--
----------------------------------------------------------
+CREATE OR REPLACE TYPE BODY FECHA AS
+    STATIC FUNCTION VALIDATE_DATE( FECHA_INICIO DATE, FECHA_FIN DATE )
+    RETURN DATE
+    IS
+    BEGIN
+        --RAISE_APPLICATION_ERROR(-20001,'ERROR EN LAS FECHAS');
+        IF ((FECHA_FIN > FECHA_INICIO)) THEN
+                RETURN FECHA_INICIO;
+        ELSE
+            RAISE_APPLICATION_ERROR(-20001,'ERROR EN LAS FECHAS');
+        END IF;
+    END;
+END;
+
+CREATE OR REPLACE TYPE BODY MONTO AS
+    STATIC FUNCTION VALIDATE_MONTO( MONTO NUMBER )
+    RETURN NUMBER
+    IS
+ 
+--MONTO*******************************************************************************************
+CREATE OR REPLACE TYPE MONTO AS OBJECT(
+    MONTO NUMBER,
+    UNIDAD_MONTO VARCHAR(3),
+    
+    STATIC FUNCTION VALIDATE_MONTO ( MONTO NUMBER) RETURN NUMBER
+);
+
+   BEGIN
+        IF ((MONTO > 0)) THEN
+            RETURN MONTO;
+        ELSE
+            RAISE_APPLICATION_ERROR(-20001,'ERROR, EL MONTO DEBE SER POSITIVO');
+        END IF;
+    END;
+END;
+
+--ACUMULADO*******************************************************************************************VERIFICAR ESTO
+CREATE OR REPLACE TYPE ACUMULADO AS OBJECT(
+    CANT_ACUMULADO NUMBER,
+    
+    STATIC FUNCTION CALCULATE_ACUM( TIPO INTEGER, VR_ID_SUCURSAL NUMBER, VR_ID_PRODUCTO NUMBER, CANIDAD NUMBER) RETURN NUMBER
+);
+
+CREATE OR REPLACE TYPE BODY ACUMULADO AS
+    STATIC FUNCTION CALCULATE_ACUM(TIPO INTEGER, VR_ID_SUCURSAL NUMBER, VR_ID_PRODUCTO NUMBER, CANIDAD NUMBER)
+    RETURN NUMBER
+    IS
+    BEGIN
+        DECLARE
+            LAST_ACUM NUMBER;
+        BEGIN
+            IF (TIPO = 1) THEN
+                SELECT C.ACUMULADO.CANT_ACUMULADO INTO LAST_ACUM
+                FROM CONTABILIDAD C
+                JOIN (
+                    SELECT MAX(ID) ID_C FROM CONTABILIDAD
+                    WHERE ID_SUCURSAL = VR_ID_SUCURSAL
+                    ) P
+                    ON P.ID_C=C.ID_SUCURSAL;
+                RETURN LAST_ACUM + CANIDAD;
+            ELSE
+                SELECT V.ACUMULADO.CANT_ACUMULADO INTO LAST_ACUM
+                FROM INVENTARIO V
+                JOIN (
+                    SELECT MAX(ID) ID_V FROM INVENTARIO
+                    WHERE ID_SUCURSAL = VR_ID_SUCURSAL
+                    AND ID_PRODUCTO = VR_ID_PRODUCTO
+                    ) P
+                ON P.ID_V = V.ID;
+                RETURN LAST_ACUM + CANIDAD;
+            END IF;
+        END;
+    END;
+END;
+
+
+*************************************************************************CREACION DE LOS TDA'S*************************************************************************--
+
+*************************************************************************CREACION DE LAS TABLAS*************************************************************************--
+-------------------------------------------------------
 --RESTAURANTE
 CREATE TABLE RESTAURANTE(
     ID NUMBER NOT NULL,
@@ -147,9 +152,9 @@ CREATE TABLE INVENTARIO (
     ID_SUCURSAL NUMBER NOT NULL,
     
     CONSTRAINT  FK_PRODUCTO_INVENTARIO FOREIGN KEY (ID_PRODUCTO) REFERENCES PRODUCTO(ID),
-    CONSTRAINT  FK_SUCURSAL_INVENTARIO FOREIGN KEY (ID_SUCURSAL) REFERENCES SUCURSAL(ID),
+    CONSTRAINT  FK_SUCURSAL_INVENTARIO FOREIGN KEY (ID_SUCURSAL) REFERENCES SUCURSAL(ID)
 
-    CONSTRAINT CH_CANTIDAD_POSITIVA CHECK (CANTIDAD>=0)
+    --CONSTRAINT CH_CANTIDAD_POSITIVA CHECK (CANTIDAD>=0)
 );
 
 CREATE SEQUENCE SEQ_INVENTARIO --nombre de la secuencia
