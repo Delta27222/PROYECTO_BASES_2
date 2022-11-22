@@ -1,0 +1,145 @@
+create or replace procedure simulacion_2
+is 
+begin
+    declare
+        nombre_sucursal sucursal.direccion%type;
+        precio_uni number;
+        vr_id_sucursal integer;
+        cant_productos integer;
+        acum_sucursal number;
+        cant_min integer;
+        producto_name varchar(30);
+        patrimonio_actual number;
+        flag integer;
+        cant_final number;
+    begin
+        SELECT MAX(ID) INTO VR_ID_SUCURSAL FROM SUCURSAL;
+        vr_id_sucursal:= round(dbms_random.value(1, vr_id_sucursal));
+        select direccion into nombre_sucursal from sucursal where id = vr_id_sucursal;
+        
+        select max(id) into cant_productos from producto;
+        cant_productos:=round(dbms_random.value(1, 10));
+        
+                dbms_output.put_line('                                                                        ');
+        dbms_output.put_line('                                                                        ');
+        dbms_output.put_line('*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-');
+        dbms_output.put_line('*-*-*-*-*-*--------Simulación 4:  Comprar Inventario--------*-*-*-*-*-*');          
+        dbms_output.put_line('*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-');
+        dbms_output.put_line('                                                                        ');
+        
+        dbms_output.put('Se selecciono la sucursal ');        
+        dbms_output.put(nombre_sucursal);
+        dbms_output.put_line(' para comprar nuevo inventario');     
+        
+        
+        dbms_output.put_line(' ');     
+        dbms_output.put('Se desea comprar ');        
+        dbms_output.put(cant_productos);
+        dbms_output.put_line(' productos');  
+        
+        
+        dbms_output.put_line(' ');     
+        dbms_output.put_line(' ');     
+        dbms_output.put_line('Debido al modelo de negocios del restaurante, solo se compraran');     
+        dbms_output.put_line('productos cuando la cantidad total disponible en la sucursal, sea');     
+        dbms_output.put_line('menor a la cantidad minima que requiere el producto');     
+
+        while cant_productos > 0
+        loop
+        
+            
+            flag:=1;
+            select nombre into producto_name from producto where id = cant_productos; --BUSCO EL NOMBRE DEL PRODUCTO
+            
+            dbms_output.put_line(producto_name);  
+            
+            select cant_minima into cant_min from producto where id = cant_productos; --BUSCO LA CANTIDAD MINIMA
+            
+            dbms_output.put_line(cant_min);  
+            select v.acumulado.cant_acumulado into acum_sucursal --BUSCO LA CANTIDAD ACTUAL DE LA SUCURSAL
+            from inventario v
+            join (
+                select max (id) xd
+                from inventario 
+                where id_sucursal = vr_id_sucursal
+                and id_producto = cant_productos
+                ) p
+            on p.xd = v.id;
+            
+            dbms_output.put_line(acum_sucursal);  
+            
+            if (acum_sucursal > cant_min) then --QUIERE DECIR QUE LA SUCURSAL NO NECESITA COMPRAR EL PRODUCTO
+                
+                dbms_output.put_line(' ');     
+                dbms_output.put('Actualmente la sucursal cuenta con ');    
+                dbms_output.put(acum_sucursal);    
+                dbms_output.put(' del producto ');    
+                dbms_output.put_line(producto_name);    
+                dbms_output.put_line('Por ende no es necesario comprar este producto');    
+                flag := 0;
+            else
+                dbms_output.put_line(' ');   
+                dbms_output.put('Se procedera a comprar el producto ');   
+                dbms_output.put_line(producto_name);    
+                
+                SELECT C.ACUMULADO.CANT_ACUMULADO INTO patrimonio_actual --EVALUO CUANTO TIENE DE PATRIMONIO
+                FROM CONTABILIDAD C
+                JOIN (
+                    SELECT MAX(ID) ID_C 
+                    FROM CONTABILIDAD
+                    WHERE ID_SUCURSAL = VR_ID_SUCURSAL
+                    ) P
+                ON P.ID_C=C.ID;
+                
+                select p.precio_unitario.monto into precio_uni
+                from producto p where id=cant_productos;
+                cant_final:=precio_uni*cant_min;
+                if (cant_final > patrimonio_actual) then
+                    dbms_output.put_line(' ');   
+                    dbms_output.put('Actualmente la sucursal no cuenta con el dinero suficiente para comprar ');   
+                    dbms_output.put_line(producto_name); 
+                    cant_final:=precio_uni*cant_min;
+                    if(precio_uni*0.001*cant_min < patrimonio_actual) then
+                        dbms_output.put_line(' ');   
+                        dbms_output.put('Actualmente la sucursal cuenta con el dinero suficiente para comprar ');   
+                        dbms_output.put(cant_min); 
+                        dbms_output.put(' de ');   
+                        dbms_output.put_line(producto_name); 
+                        
+                    else 
+                        flag:=0;        
+                        dbms_output.put_line(' ');   
+                        dbms_output.put('Actualmente la sucursal no cuenta con el dinero suficiente para comprar ');   
+                        dbms_output.put_line(producto_name); 
+                        dbms_output.put_line('Intente nuevamente');                 
+                    end if;
+                    
+                end if;
+   
+            end if;
+            
+            if flag = 1 then
+                
+                    dbms_output.put_line('procedo a comprar');      
+                    cant_final:=cant_final/precio_uni;
+                    insert into inventario values (seq_inventario.nextval, fecha((select sysdate from dual),null), cant_final,
+                    acumulado(acumulado.calculate_acum(0,vr_id_sucursal,cant_productos,cant_final)), cant_productos, vr_id_sucursal);
+                    dbms_output.put_line(' ');   
+                    dbms_output.put('El producto ');   
+                    dbms_output.put(producto_name); 
+                    dbms_output.put_line(' fue comprado exitosamente.');  
+                    dbms_output.put_line(' ');   
+                    dbms_output.put('Total comprado: ');   
+                    dbms_output.put_line(cant_final);   
+                    dbms_output.put('Total pagado: ');   
+                    dbms_output.put_line(cant_final*precio_uni);   
+                end if;
+            
+            cant_productos:=cant_productos - 1;
+                
+        end loop;
+        
+    end;
+end;
+--set serveroutput on
+--execute simulacion_2();
