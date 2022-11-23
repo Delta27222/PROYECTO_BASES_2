@@ -3,7 +3,7 @@
 > Simulaciones:
 
 - [x] 1)  Escenario Reservar una mesa.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
-- [ ] 2)  Escenario Compra de Inventario.
+- [x] 2)  Escenario Compra de Inventario.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [x] 3)  Escenario de Contratación de Grupo.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [ ] 4)  Escenario Realizar Consumo.
 - [x] 5)  Escenario Pagar Nómina a Trabajadores.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
