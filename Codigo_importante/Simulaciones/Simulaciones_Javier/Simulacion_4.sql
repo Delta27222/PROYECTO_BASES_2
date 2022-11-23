@@ -163,6 +163,7 @@ begin
     --             commit ;
                  select max(id) into cont2 from compra;
                  select sysdate into fecha_hoy from dual;
+                 
 --                 select TO_CHAR( to_date('16-11-22 15:18','DD-MM-YY HH24:MI:SS') + 
 --                 dbms_random.value(0, to_date('23-11-22 16:20', 'DD-MM-YY HH24:MI:SS') - 
 --                 to_date('16-11-22 15:18','DD-MM-YY HH24:MI:SS')), 'DD-MM-YY HH24:MI:SS') --into fecha_hoy 
