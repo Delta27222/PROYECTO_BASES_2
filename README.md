@@ -5,7 +5,7 @@
 - [x] 1)  Escenario Reservar una mesa.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [x] 2)  Escenario Compra de Inventario.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [x] 3)  Escenario de Contratación de Grupo.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
-- [ ] 4)  Escenario Realizar Consumo.
+- [ ] 4)  Escenario Realizar Consumo.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [x] 5)  Escenario Pagar Nómina a Trabajadores.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [x] 6)  Escenario Contratación de personal.     (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [x] 7)  Escenario Compra de Sucursal.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
@@ -13,7 +13,7 @@
 
 > Reportes:
 
-- [x] 1)  Reporte de Platos de mayor demanda.<---->LISTO - recuerdo haberlo visto en funcionamiento con datos, pero igual primero probarlo
+- [x] 1)  Reporte de Platos de mayor demanda.<---->LISTO - Probado y visualizado en jaspersoft😆
 - [x] 2)  Reporte de Menú del día.<---->LISTO - Probado y visualizado en jaspersoft😆
 - [x] 3)  Reporte de historico de Promociones.<---->LISTO - Probado y visualizado en jaspersoft😆
 - [x] 4)  Reporte de Empleados del Restaurante por Sucursal y su Rol.<---->LISTO - Probado y visualizado en jaspersoft😆
