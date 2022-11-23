@@ -1,21 +1,47 @@
-create or replace procedure reporte_6(cur in out sys_refcursor, 
-nombre_suc string)
+create or replace procedure reporte_6(cur in out sys_refcursor, nombre_suc string, dia varchar, f_ini date, f_fin date)
 is
 begin
-    declare
-       id_sucursal_var number; 
+    DECLARE
+        DIA_V varchar(20);
     begin
-        select id into id_sucursal_var from sucursal where direccion = nombre_suc;
+    if upper(dia) = 'LUNES' then
+        dia_v:='MONDAY';
+    end if;
+    if upper(dia) = 'MARTES' then
+        dia_v:='TUESDAY';
+    end if;
+    if upper(dia) = 'MIERCOLES' then
+        dia_v:='WEDNESDAY';
+    end if;
+    if upper(dia) = 'JUEVES' then
+        dia_v:='THURSDAY';
+    end if;
+    if upper(dia) = 'VIERNES' then
+        dia_v:='FRIDAY';
+    end if;
+    if upper(dia) = 'SABADO' then
+        dia_v:='SATURDAY';
+    end if;
+    if upper(dia) = 'DOMINGO' then
+        dia_v:='SUNDAY';
+    end if;
         open cur for
-        select sp.direccion sucursal, rp.nombre nombre_restaurante, sp.horario, m.ID_SUCURSAL, m.fecha, m.horas, count(horas)REPORT_COUNT from (
-                select id_sucursal, TO_CHAR(con.fecha_consumo.fecha_inicio,'DD/MM/YYYY') fecha, TO_CHAR(con.fecha_consumo.fecha_inicio,'HH24')horas from consumo con 
-                where id_sucursal = 2
-        ) m
-        join sucursal sp
-        on sp.id = m.id_sucursal
-        join restaurante rp
-        on rp.id = sp.id_restaurante
-        group by sp.direccion, rp.nombre, sp.horario, m.ID_SUCURSAL, m.fecha, m.horas
-        order by fecha;
+        SELECT S.DIRECCION, s.horario ,F.HORA, COUNT(DIA) CANT_DIAS
+        FROM CONSUMO C
+        JOIN (
+            select c.id, d.dia, TO_CHAR(c.fecha_consumo.fecha_inicio,'HH24') hora
+            from consumo c
+            join (
+                select c.id, to_char(to_date(c.fecha_consumo.fecha_inicio), 'DAY', 'NLS_DATE_LANGUAGE=ENGLISH') dia
+                from consumo c ) d
+                on d.id = c.id
+                WHERE D.DIA LIKE '%'||dia_v||'%'
+                and c.fecha_consumo.fecha_inicio between f_ini and f_fin
+                ) F
+        ON F.ID = C.ID
+        JOIN SUCURSAL S
+        ON S.ID = C.ID_SUCURSAL
+        WHERE S.DIRECCION = 'El Hatillo'
+        GROUP BY HORA,S.DIRECCION, s.horario;
     end;
 end;
