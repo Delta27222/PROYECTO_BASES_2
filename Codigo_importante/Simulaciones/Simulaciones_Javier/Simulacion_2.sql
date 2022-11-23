@@ -93,7 +93,7 @@ begin
                 
                 select p.precio_unitario.monto into precio_uni
                 from producto p where id=vr_id_producto;
-                cant_final:=precio_uni*cant_min;
+                cant_final:=precio_uni*cant_min*5;
                 if (cant_final > patrimonio_actual) then
                     dbms_output.put_line(' ');   
                     dbms_output.put('Actualmente la sucursal no cuenta con el dinero suficiente para comprar ');   
