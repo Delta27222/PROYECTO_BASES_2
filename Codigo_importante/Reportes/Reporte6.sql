@@ -6,10 +6,15 @@ begin
     begin
         select id into id_sucursal_var from sucursal where direccion = nombre_suc;
         open cur for
-        select ID_SUCURSAL, fecha, horas, count(horas)REPORT_COUNT from (
+        select sp.direccion sucursal, rp.nombre nombre_restaurante, rp.logo, sp.horario, m.ID_SUCURSAL, m.fecha, m.horas, count(horas)REPORT_COUNT from (
                 select id_sucursal, TO_CHAR(con.fecha_consumo.fecha_inicio,'DD/MM/YYYY') fecha, TO_CHAR(con.fecha_consumo.fecha_inicio,'HH24')horas from consumo con 
                 where id_sucursal = id_sucursal_var
-        ) group by horas, fecha, ID_SUCURSAL
+        ) m
+        join sucursal sp
+        on sp.id = m.id_sucursal
+        join restaurante rp
+        on rp.id = sp.id_restaurante
+        group by horas, fecha, ID_SUCURSAL
         order by fecha;
     end;
 end;
