@@ -23,7 +23,7 @@ begin
                 dbms_output.put_line('                                                                        ');
         dbms_output.put_line('                                                                        ');
         dbms_output.put_line('*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-');
-        dbms_output.put_line('*-*-*-*-*-*--------Simulación 4:  Comprar Inventario--------*-*-*-*-*-*');          
+        dbms_output.put_line('*-*-*-*-*-*--------Simulación 2:  Comprar Inventario--------*-*-*-*-*-*');          
         dbms_output.put_line('*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-');
         dbms_output.put_line('                                                                        ');
         
