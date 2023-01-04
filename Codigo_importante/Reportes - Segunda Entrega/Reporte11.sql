@@ -1,4 +1,4 @@
-create or replace NONEDITIONABLE procedure ZZ_reporte_11(cur in out sys_refcursor,destino String, tipo_comida String)
+create or replace NONEDITIONABLE procedure reporte_11(cur in out sys_refcursor,destino String, tipo_comida String)
 is 
 Begin
 Declare 
