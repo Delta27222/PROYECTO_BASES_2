@@ -25,7 +25,7 @@
 - [ ] 10)  Reporte de recetas o platos estrella del Restaurante.
 - [x] 11)  Reporte de control de despacho vía Delivery.<---->LISTO - Probado y visualizado en jaspersoft😆
 - [ ] 12)  Reporte de ventas del día agrupado por sucursal y formas de pago.
-- [ ] 13)  Reporte de reservas realizadas en el Restaurante.
+- [x] 13)  Reporte de reservas realizadas en el Restaurante.<---->LISTO - Probado y visualizado en jaspersoft😆
 - [ ] 14)  Reporte de Grupos musicales contratados para la Sucursal del Restaurante.
 
 ![This is an image](https://images3.memedroid.com/images/UPLOADED77/607ba2383c43c.jpeg) 👇👇👇👇👇
