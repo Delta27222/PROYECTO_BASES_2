@@ -1,4 +1,4 @@
-create or replace NONEDITIONABLE procedure Z_reporte_7(cur in out sys_refcursor,nombre_suc String, fecha_inicio_var date, fecha_fin_var date)
+create or replace NONEDITIONABLE procedure reporte_7(cur in out sys_refcursor,nombre_suc String, fecha_inicio_var date, fecha_fin_var date)
 is 
 Begin
 Declare 
