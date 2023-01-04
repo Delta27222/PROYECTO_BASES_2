@@ -20,7 +20,7 @@
 - [x] 5)  Reporte de Sucursales del Restaurante.<---->LISTO - Probado y visualizado en jaspersoft😆
 - [x] 6)  Reporte de horarios de mayor y menor afluencia por Restaurante y Sucursal.<---->LISTO - Probado y visualizado en jaspersoft😆
 
-> Reportes Primera Entrega:
+> Reportes Segunda Entrega:
 
 - [x] 7)  Reporte de control de Inventario de mercancía.<---->EN PROCESO - ❌Probado y visualizado en jaspersoft❌, PERO FALTA VER COMO SACAR LA COLUMNA DE CANTIDAD ❗❗❗
 - [ ] 8)  Reporte de ingresos y egresos por Sucursal de Restaurante.
