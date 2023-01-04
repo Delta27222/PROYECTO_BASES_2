@@ -23,7 +23,7 @@ Declare
         end if;
     open cur for
 
-        select suc.direccion, suc.mapa, re.fecha_reserva.fecha_inicio, re.cant_personas, re.abono
+        select suc.direccion Direccion, suc.mapa Mapa, to_char(re.fecha_reserva.fecha_inicio) Fecha, re.cant_personas Cant_personas, re.abono Abono
         from sucursal suc
         join reserva re
         on suc.id = re.id_sucursal
