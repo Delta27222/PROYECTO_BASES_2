@@ -29,8 +29,8 @@ begin
         end if;
 
         open cur for
-                select s.direccion, e.foto, p.cedula, p.nombre, p.apellido,p.FECHA_NAC, p.genero, e.fecha_contratacion.fecha_inicio fecha_contratacion, 
-                e.fecha_contratacion.fecha_fin fecha_egreso, e.motivo_egreso, r.nombre, r.funcion
+                select s.direccion, e.foto, p.cedula, p.nombre, p.apellido,to_char(p.FECHA_NAC), p.genero, to_char(e.fecha_contratacion.fecha_inicio) fecha_contratacion, 
+                to_char(e.fecha_contratacion.fecha_fin) fecha_egreso, e.motivo_egreso, r.nombre, r.funcion
                 from sucursal s
                 join empleado e
                 on e.id_sucursal = s.id
@@ -41,6 +41,6 @@ begin
                 join rol r
                 on pt.id_rol = r.id
                 where e.fecha_contratacion.fecha_inicio between vr_fecha_ini and vr_fecha_fin
-                and lower(translate(s.direccion,'áéíóúÁÉÍÓÚ','aeiouAEIOU')) like vr_nombre_s and lower(translate(r.nombre,'áéíóúÁÉÍÓÚ','aeiouAEIOU')) like vr_rol;
+                and lower(translate(s.direccion,'áéíóúÁÉÍÓÚ','aeiouAEIOU'))like vr_nombre_s and lower(translate(r.nombre,'áéíóúÁÉÍÓÚ','aeiouAEIOU')) like vr_rol;
 end;
 end;

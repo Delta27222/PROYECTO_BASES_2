@@ -29,7 +29,7 @@ begin
     end if;
 
         open cur for
-            select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, t.f_ini, t.f_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
+            select s.direccion, p.nombre, p.foto, p.categoria, d.tipo, to_char(t.f_ini)f_ini, to_char(t.f_fin)f_fin, d.total_plato, concat(((d.total_plato*100)/t.total),'%') porcentaje, p.precio.monto 
             from sucursal s
             join (
                 select s.direccion, min(c.fecha_consumo.fecha_inicio) f_ini, max(c.fecha_consumo.fecha_inicio) f_fin, 
@@ -68,4 +68,3 @@ begin
 
     end;
 end;
-
