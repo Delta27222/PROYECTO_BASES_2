@@ -11,7 +11,7 @@
 - [x] 7)  Escenario Compra de Sucursal.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [x] 8)  Escenario Realizar Compra.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 
-> Reportes:
+> Reportes Primera Entrega:
 
 - [x] 1)  Reporte de Platos de mayor demanda.<---->LISTO - Probado y visualizado en jaspersoft😆
 - [x] 2)  Reporte de Menú del día.<---->LISTO - Probado y visualizado en jaspersoft😆
@@ -19,14 +19,17 @@
 - [x] 4)  Reporte de Empleados del Restaurante por Sucursal y su Rol.<---->LISTO - Probado y visualizado en jaspersoft😆
 - [x] 5)  Reporte de Sucursales del Restaurante.<---->LISTO - Probado y visualizado en jaspersoft😆
 - [x] 6)  Reporte de horarios de mayor y menor afluencia por Restaurante y Sucursal.<---->LISTO - Probado y visualizado en jaspersoft😆
-- [ ] 7)  Reporte de control de Inventario de mercancía.<---->EN PROCESO - ❌Probado y visualizado en jaspersoft❌, PERO FALTA VER COMO SACAR LA COLUMNA DE CANTIDAD ❗❗❗
+
+> Reportes Primera Entrega:
+
+- [x] 7)  Reporte de control de Inventario de mercancía.<---->EN PROCESO - ❌Probado y visualizado en jaspersoft❌, PERO FALTA VER COMO SACAR LA COLUMNA DE CANTIDAD ❗❗❗
 - [ ] 8)  Reporte de ingresos y egresos por Sucursal de Restaurante.
 - [ ] 9)  Reporte de satisfacción de calidad de servicio.
 - [ ] 10)  Reporte de recetas o platos estrella del Restaurante.
 - [x] 11)  Reporte de control de despacho vía Delivery.<---->LISTO - Probado y visualizado en jaspersoft😆
 - [ ] 12)  Reporte de ventas del día agrupado por sucursal y formas de pago.
 - [x] 13)  Reporte de reservas realizadas en el Restaurante.<---->LISTO - Probado y visualizado en jaspersoft😆
-- [ ] 14)  Reporte de Grupos musicales contratados para la Sucursal del Restaurante.
+- [x] 14)  Reporte de Grupos musicales contratados para la Sucursal del Restaurante.<---->LISTO - Probado y visualizado en jaspersoft😆
 
 ![This is an image](https://images3.memedroid.com/images/UPLOADED77/607ba2383c43c.jpeg) 👇👇👇👇👇
 
