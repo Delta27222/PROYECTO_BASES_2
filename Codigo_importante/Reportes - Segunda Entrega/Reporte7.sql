@@ -1,4 +1,4 @@
-create or replace NONEDITIONABLE procedure reporte_7(cur in out sys_refcursor,nombre_suc String, fecha_inicio_var date, fecha_fin_var date)
+create or replace NONEDITIONABLE procedure Z_reporte_7(cur in out sys_refcursor,nombre_suc String, fecha_inicio_var date, fecha_fin_var date)
 is 
 Begin
 Declare 
@@ -22,7 +22,7 @@ Declare
         else vr_nombre_suc:= lower(translate(nombre_suc,'áéíóúÁÉÍÓÚ','aeiouAEIOU'));
         end if;
     open cur for
-        select suc.direccion sucursal, inv.fecha_inventario.fecha_inicio fecha_inventario, pro.nombre producto, pro.foto foto, '3' as cantidad
+        select suc.direccion sucursal, to_char(inv.fecha_inventario.fecha_inicio) fecha_inventario, pro.nombre producto, pro.foto foto, '3' as cantidad
         from inventario inv
         join sucursal suc
         on (inv.id_sucursal = suc.id)
