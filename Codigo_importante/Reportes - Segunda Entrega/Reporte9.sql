@@ -1,5 +1,4 @@
-
-create or replace procedure reporte_9 (cur in out sys_refcursor, n_sucursal String, m_ini integer, m_fin integer)
+create or replace NONEDITIONABLE procedure z_reporte_9 (cur in out sys_refcursor, n_sucursal String, m_ini integer, m_fin integer)
 is
 begin
 declare
@@ -20,7 +19,7 @@ end if;
 
 
 open cur for
-    select s.direccion sucursal, b.mes, (round(((b.promotores*10)/a.cant_respuestas),2)) nivel, b.observaciones
+    select s.direccion sucursal, b.mes, (round(((b.promotores*10)/a.cant_respuestas),2)) nivel, to_char(b.observaciones) observaciones
         from sucursal s
         join (
             select id_sucursal, p.mes, count(valoracion) cant_respuestas
