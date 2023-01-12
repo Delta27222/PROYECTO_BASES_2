@@ -2,21 +2,20 @@ create or replace NONEDITIONABLE procedure z_reporte_9 (cur in out sys_refcursor
 is
 begin
 declare
-    var_m_ini integer;
-    var_m_fin integer;
-    var_n_sucursal sucursal.direccion%type;
-begin
-if (m_ini is null) then
-    var_m_ini:=1;
-end if;
-if (m_fin is null) then
-    var_m_fin:=12;
-end if;
-if (n_sucursal is null) then
-    var_n_sucursal:='%';
-end if;
-
-
+        var_m_ini integer;
+        var_m_fin integer;
+        var_n_sucursal sucursal.direccion%type;
+    begin
+    if (m_ini is null) then
+        var_m_ini:=1;
+    end if;
+    if (m_fin is null) then
+        var_m_fin:=12;
+    end if;
+    if (n_sucursal is null) then
+        var_n_sucursal:='%';
+    else var_n_sucursal:= lower(translate(n_sucursal,'áéíóúÁÉÍÓÚ','aeiouAEIOU'));
+    end if;
 
 open cur for
             select x.sucursal,x.mes, x.nivel , x.observaciones,
@@ -85,7 +84,7 @@ open cur for
                     )b
                     on b.id_sucursal = s.id
                     and a.mes = b.mes
-                    where s.direccion like var_n_sucursal
+                    where lower(translate(s.direccion,'áéíóúÁÉÍÓÚ','aeiouAEIOU')) like var_n_sucursal
             )x
             on  id = 2;     
 end;    
