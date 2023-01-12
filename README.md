@@ -5,7 +5,7 @@
 - [x] 1)  Escenario Reservar una mesa.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [x] 2)  Escenario Compra de Inventario.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [x] 3)  Escenario de Contratación de Grupo.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
-- [ ] 4)  Escenario Realizar Consumo.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
+- [x] 4)  Escenario Realizar Consumo.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [x] 5)  Escenario Pagar Nómina a Trabajadores.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [x] 6)  Escenario Contratación de personal.     (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
 - [x] 7)  Escenario Compra de Sucursal.            (FUNCIONANDO 😆, TENER EN CUENTA QUE HAY QUE TENER LAS SECUENCIAS BIEN)
@@ -24,7 +24,7 @@
 
 - [x] 7)  Reporte de control de Inventario de mercancía.<---->EN PROCESO - ❌Probado y visualizado en jaspersoft❌, PERO FALTA VER COMO SACAR LA COLUMNA DE CANTIDAD ❗❗❗
 - [ ] 8)  Reporte de ingresos y egresos por Sucursal de Restaurante.
-- [ ] 9)  Reporte de satisfacción de calidad de servicio.
+- [x] 9)  Reporte de satisfacción de calidad de servicio.<---->LISTO - Probado y visualizado en jaspersoft😆
 - [ ] 10)  Reporte de recetas o platos estrella del Restaurante.
 - [x] 11)  Reporte de control de despacho vía Delivery.<---->LISTO - Probado y visualizado en jaspersoft😆
 - [ ] 12)  Reporte de ventas del día agrupado por sucursal y formas de pago.
