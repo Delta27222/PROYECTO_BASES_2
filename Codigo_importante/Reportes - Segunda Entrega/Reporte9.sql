@@ -1,4 +1,4 @@
-create or replace NONEDITIONABLE procedure z_reporte_9 (cur in out sys_refcursor, n_sucursal String, m_ini integer, m_fin integer)
+create or replace NONEDITIONABLE procedure reporte_9 (cur in out sys_refcursor, n_sucursal String, m_ini integer, m_fin integer)
 is
 begin
 declare
@@ -23,12 +23,13 @@ open cur for
             when (x.nivel >= 90) and (x.nivel <= 100) then (select face_img from face where id=1)
             when (x.nivel >= 70) and (x.nivel <= 89) then (select face_img from face where id=2)
             when (x.nivel >= 50) and (x.nivel <= 69) then (select face_img from face where id=3)
-            when (x.nivel <= 49) then (select face_img from face where id=4)
-            end img
+            when (x.nivel >= 30) and (x.nivel <= 49) then (select face_img from face where id=4)
+            when (x.nivel <= 29) then (select face_img from face where id=5)
+            end img,x.tipo
             from face s
             join
             (
-            select s.direccion sucursal, b.mes mes, (round(((b.promotores*10)/a.cant_respuestas),2)) nivel, to_char(b.observaciones) observaciones
+                    select s.direccion sucursal, b.mes mes, (round(((b.promotores*10)/a.cant_respuestas),2)) nivel, to_char(b.observaciones) observaciones, l.tipo tipo
                     from sucursal s
                     join (
                         select id_sucursal, p.mes, count(valoracion) cant_respuestas
@@ -84,6 +85,12 @@ open cur for
                     )b
                     on b.id_sucursal = s.id
                     and a.mes = b.mes
+                    join 
+                    (
+                        select y.tipo tipo, y.id_sucursal from encuesta y
+                        where y.tipo = 'Restaurante'
+                    )l
+                    on l.id_sucursal = s.id
                     where lower(translate(s.direccion,'áéíóúÁÉÍÓÚ','aeiouAEIOU')) like var_n_sucursal
             )x
             on  id = 2;     
