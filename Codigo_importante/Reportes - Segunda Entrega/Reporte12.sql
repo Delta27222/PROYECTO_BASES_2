@@ -9,7 +9,7 @@ begin
         if (nombre_sucursal is null) then
             vr_nombre_s:= '%';
         else vr_nombre_s:= lower(translate(nombre_sucursal,'áéíóú�?É�?ÓÚ','aeiouAEIOU'));
-        end if;
+        end if; 
 
         if (fecha_ini is null) then
             select min(e.fecha_contratacion.fecha_inicio) into vr_fecha_ini from empleado e;
