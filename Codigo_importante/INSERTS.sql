@@ -6757,3 +6757,11 @@ FECHA((select sysdate-round(dbms_random.value(0,45),0) from dual), null),
 (SELECT (1+ABS(MOD(dbms_random.random,94))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,8))) FROM DUAL),
 (SELECT (1+ABS(MOD(dbms_random.random,31))) FROM DUAL));
+
+
+insert into contabilidad values 
+(seq_contabilidad.nextval, 
+(SELECT (200+ABS(MOD(dbms_random.random,500))) from dual),  
+FECHA((select sysdate-round(dbms_random.value(0,90),0) from dual), null), 
+null,
+(SELECT (1+ABS(MOD(dbms_random.random,8)))from dual))
