@@ -1,9 +1,3 @@
---COMPROBAR LOS PERMISOS (EN EL USER USER_PROYECTO)
-select * FROM USER_SYS_PRIVS;
-SELECT * FROM USER_TAB_PRIVS WHERE GRANTEE = 'DUENO'; --PUEDO COMPROBAR LOS PRIVILEGIOS QUE SE LE ASIGNAN A TABLAS EN CONCRETO
-SELECT * FROM USER_ROLE_PRIVS;
-
-
 -- PROFILE SQL
 CREATE PROFILE app_user LIMIT 
   SESSIONS_PER_USER                 2   --
@@ -14,24 +8,256 @@ CREATE PROFILE app_user LIMIT
   FAILED_LOGIN_ATTEMPTS     UNLIMITED   --
   PASSWORD_LIFE_TIME        UNLIMITED   -- dias
 
-------------------- USER SQL  select username, default_tablespace from dba_users where default_tablespace = 'USERS'
+--COMPROBAR LOS PERMISOS (EN EL USER USER_PROYECTO)
+select * FROM USER_SYS_PRIVS;
+SELECT * FROM USER_TAB_PRIVS WHERE GRANTEE = 'DUENO'; --PUEDO COMPROBAR LOS PRIVILEGIOS QUE SE LE ASIGNAN A TABLAS EN CONCRETO
+SELECT * FROM USER_ROLE_PRIVS;
 
-CREATE or replace USER Miguel IDENTIFIED BY "1234"
+CREATE  USER Eduardo IDENTIFIED BY "1234"
 DEFAULT TABLESPACE USERS
 QUOTA UNLIMITED ON SYSTEM
 PROFILE app_user
 
 ------------------- ROLES   select role from dba_roles where role = 'DUENO'
-Create Role dueno;
+Create Role Administrador;
 
 ------------------- SYSTEM PRIVILEGES       select * from dba_sys_privs where grantee = 'DUENO' -O- SELECT * FROM USER_TAB_PRIVS WHERE GRANTEE = 'DUENO'
-GRANT create session, create table, alter any table, drop any table,
-        insert any table, update any table, delete any table, select any table to Dueno;
+--GENERALES
+GRANT CREATE ROLE TO Administrador;
+GRANT CREATE TRIGGER  TO Administrador;
+GRANT CREATE VIEW TO Administrador;
+GRANT CREATE TABLE TO Administrador;
+GRANT CREATE SEQUENCE TO Administrador;
+GRANT CREATE USER TO Administrador;
+GRANT CREATE PROCEDURE TO Administrador;
+GRANT DROP USER TO Administrador;
+
+--POR TABLAS
+--Selects
+GRANT select on compra to Administrador;
+GRANT select on consumo to Administrador;
+GRANT select on contabilidad to Administrador;
+GRANT select on empleado to Administrador;
+GRANT select on encuesta to Administrador;
+GRANT select on evento to Administrador;
+GRANT select on grupo to Administrador;
+GRANT select on inventario to Administrador;
+GRANT select on mesa to Administrador;
+GRANT select on mesa_reservada to Administrador;
+GRANT select on pago to Administrador;
+GRANT select on persona to Administrador;
+GRANT select on plato to Administrador;
+GRANT select on plato_consumido to Administrador;
+GRANT select on plato_dia to Administrador;
+GRANT select on producto to Administrador;
+GRANT select on promocion to Administrador;
+GRANT select on puesto to Administrador;
+GRANT select on receta to Administrador;
+GRANT select on reserva to Administrador;
+GRANT select on restaurante to Administrador;
+GRANT select on rol to Administrador;
+GRANT select on sucursal to Administrador;
+
+--Inserts
+GRANT insert on compra to Administrador;
+GRANT insert on consumo to Administrador;
+GRANT insert on contabilidad to Administrador;
+GRANT insert on empleado to Administrador;
+GRANT insert on encuesta to Administrador;
+GRANT insert on evento to Administrador;
+GRANT insert on grupo to Administrador;
+GRANT insert on inventario to Administrador;
+GRANT insert on mesa to Administrador;
+GRANT insert on mesa_reservada to Administrador;
+GRANT insert on pago to Administrador;
+GRANT insert on persona to Administrador;
+GRANT insert on plato to Administrador;
+GRANT insert on plato_consumido to Administrador;
+GRANT insert on plato_dia to Administrador;
+GRANT insert on producto to Administrador;
+GRANT insert on promocion to Administrador;
+GRANT insert on puesto to Administrador;
+GRANT insert on receta to Administrador;
+GRANT insert on reserva to Administrador;
+GRANT insert on restaurante to Administrador;
+GRANT insert on rol to Administrador;
+GRANT insert on sucursal to Administrador;
+
+--Updates
+GRANT update on compra to Administrador;
+GRANT update on consumo to Administrador;
+GRANT update on contabilidad to Administrador;
+GRANT update on empleado to Administrador;
+GRANT update on encuesta to Administrador;
+GRANT update on evento to Administrador;
+GRANT update on grupo to Administrador;
+GRANT update on inventario to Administrador;
+GRANT update on mesa to Administrador;
+GRANT update on mesa_reservada to Administrador;
+GRANT update on pago to Administrador;
+GRANT update on persona to Administrador;
+GRANT update on plato to Administrador;
+GRANT update on plato_consumido to Administrador;
+GRANT update on plato_dia to Administrador;
+GRANT update on producto to Administrador;
+GRANT update on promocion to Administrador;
+GRANT update on puesto to Administrador;
+GRANT update on receta to Administrador;
+GRANT update on reserva to Administrador;
+GRANT update on restaurante to Administrador;
+GRANT update on rol to Administrador;
+GRANT update on sucursal to Administrador;
+
+--Drops
+GRANT delete on compra to Administrador;
+GRANT delete on consumo to Administrador;
+GRANT delete on contabilidad to Administrador;
+GRANT delete on empleado to Administrador;
+GRANT delete on encuesta to Administrador;
+GRANT delete on evento to Administrador;
+GRANT delete on grupo to Administrador;
+GRANT delete on inventario to Administrador;
+GRANT delete on mesa to Administrador;
+GRANT delete on mesa_reservada to Administrador;
+GRANT delete on pago to Administrador;
+GRANT delete on persona to Administrador;
+GRANT delete on plato to Administrador;
+GRANT delete on plato_consumido to Administrador;
+GRANT delete on plato_dia to Administrador;
+GRANT delete on producto to Administrador;
+GRANT delete on promocion to Administrador;
+GRANT delete on puesto to Administrador;
+GRANT delete on receta to Administrador;
+GRANT delete on reserva to Administrador;
+GRANT delete on restaurante to Administrador;
+GRANT delete on rol to Administrador;
+GRANT delete on sucursal to Administrador;
+
+--Alters
+GRANT alter on compra to Administrador;
+GRANT alter on consumo to Administrador;
+GRANT alter on contabilidad to Administrador;
+GRANT alter on empleado to Administrador;
+GRANT alter on encuesta to Administrador;
+GRANT alter on evento to Administrador;
+GRANT alter on grupo to Administrador;
+GRANT alter on inventario to Administrador;
+GRANT alter on mesa to Administrador;
+GRANT alter on mesa_reservada to Administrador;
+GRANT alter on pago to Administrador;
+GRANT alter on persona to Administrador;
+GRANT alter on plato to Administrador;
+GRANT alter on plato_consumido to Administrador;
+GRANT alter on plato_dia to Administrador;
+GRANT alter on producto to Administrador;
+GRANT alter on promocion to Administrador;
+GRANT alter on puesto to Administrador;
+GRANT alter on receta to Administrador;
+GRANT alter on reserva to Administrador;
+GRANT alter on restaurante to Administrador;
+GRANT alter on rol to Administrador;
+GRANT alter on sucursal to Administrador;
 
 ------------------- GRANT ROLE TO USER
-GRANT dueno to Miguel;
+GRANT Administrador to Eduardo;
 
+--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==
 
+------------------- USER SQL  select username, default_tablespace from dba_users where default_tablespace = 'USERS'
+
+CREATE USER Angel IDENTIFIED BY "1234"
+DEFAULT TABLESPACE USERS
+QUOTA UNLIMITED ON SYSTEM
+PROFILE app_user
+
+Create Role Dueno;
+
+------------------- SYSTEM PRIVILEGES       select * from dba_sys_privs where grantee = 'DUENO' -O- SELECT * FROM USER_TAB_PRIVS WHERE GRANTEE = 'DUENO'
+
+--GENERALES
+GRANT CREATE ROLE TO Dueno;
+GRANT CREATE USER TO Dueno;
+GRANT DROP USER TO dueno;
+
+--POR TABLAS
+
+--Selects
+GRANT select on compra to Dueno;
+GRANT select on consumo to Dueno;
+GRANT select on contabilidad to Dueno;
+GRANT select on empleado to Dueno;
+GRANT select on encuesta to Dueno;
+GRANT select on evento to Dueno;
+GRANT select on grupo to Dueno;
+GRANT select on inventario to Dueno;
+GRANT select on mesa to Dueno;
+GRANT select on mesa_reservada to Dueno;
+GRANT select on pago to Dueno;
+GRANT select on persona to Dueno;
+GRANT select on plato to Dueno;
+GRANT select on plato_consumido to Dueno;
+GRANT select on plato_dia to Dueno;
+GRANT select on producto to Dueno;
+GRANT select on promocion to Dueno;
+GRANT select on puesto to Dueno;
+GRANT select on receta to Dueno;
+GRANT select on reserva to Dueno;
+GRANT select on restaurante to Dueno;
+GRANT select on rol to Dueno;
+GRANT select on sucursal to Dueno;
+
+--Inserts
+GRANT insert on compra to Dueno;
+GRANT insert on consumo to Dueno;
+GRANT insert on contabilidad to Dueno;
+GRANT insert on empleado to Dueno;
+GRANT insert on encuesta to Dueno;
+GRANT insert on evento to Dueno;
+GRANT insert on grupo to Dueno;
+GRANT insert on inventario to Dueno;
+GRANT insert on mesa to Dueno;
+GRANT insert on mesa_reservada to Dueno;
+GRANT insert on pago to Dueno;
+GRANT insert on persona to Dueno;
+GRANT insert on plato to Dueno;
+GRANT insert on plato_consumido to Dueno;
+GRANT insert on plato_dia to Dueno;
+GRANT insert on producto to Dueno;
+GRANT insert on promocion to Dueno;
+GRANT insert on puesto to Dueno;
+GRANT insert on receta to Dueno;
+GRANT insert on reserva to Dueno;
+GRANT insert on restaurante to Dueno;
+GRANT insert on rol to Dueno;
+GRANT insert on sucursal to Dueno;
+
+--Updates
+GRANT update on compra to Dueno;
+GRANT update on consumo to Dueno;
+GRANT update on contabilidad to Dueno;
+GRANT update on empleado to Dueno;
+GRANT update on encuesta to Dueno;
+GRANT update on evento to Dueno;
+GRANT update on grupo to Dueno;
+GRANT update on inventario to Dueno;
+GRANT update on mesa to Dueno;
+GRANT update on mesa_reservada to Dueno;
+GRANT update on pago to Dueno;
+GRANT update on persona to Dueno;
+GRANT update on plato to Dueno;
+GRANT update on plato_consumido to Dueno;
+GRANT update on plato_dia to Dueno;
+GRANT update on producto to Dueno;
+GRANT update on promocion to Dueno;
+GRANT update on puesto to Dueno;
+GRANT update on receta to Dueno;
+GRANT update on reserva to Dueno;
+GRANT update on restaurante to Dueno;
+GRANT update on rol to Dueno;
+GRANT update on sucursal to Dueno;
+
+------------------- GRANT ROLE TO USER
+GRANT Dueno to Angel;
 
 select * from dba_users order by username; --Asi consultamos
 
@@ -58,6 +284,7 @@ GRANT insert on mesa to Gerente_General;
 GRANT insert on mesa_reservada to Gerente_General;
 GRANT insert on rol to Gerente_General;
 --Updates
+GRANT update on empleado to Gerente_General;
 GRANT update on evento to Gerente_General;
 GRANT update on grupo to Gerente_General;
 GRANT update on reserva to Gerente_General;
@@ -145,12 +372,14 @@ GRANT insert on plato to Chef_Ejecutivo;
 GRANT insert on plato_dia to Chef_Ejecutivo;
 GRANT insert on inventario to Chef_Ejecutivo;
 GRANT insert on receta to Chef_Ejecutivo;
+GRANT insert on producto to Chef_Ejecutivo;
 
 --Updates
 GRANT update on plato to Chef_Ejecutivo;
 GRANT update on plato_dia to Chef_Ejecutivo;
 GRANT update on inventario to Chef_Ejecutivo;
 GRANT update on receta to Chef_Ejecutivo;
+GRANT update on producto to Chef_Ejecutivo;
 
 --Selects       
 GRANT select on plato to Chef_Ejecutivo;
@@ -158,6 +387,7 @@ GRANT select on plato_dia to Chef_Ejecutivo;
 GRANT select on inventario to Chef_Ejecutivo;
 GRANT select on receta to Chef_Ejecutivo;
 GRANT select on promocion to Chef_Ejecutivo;
+GRANT select on producto to Chef_Ejecutivo;
 
 
 ------------------- GRANT ROLE TO USER
@@ -222,15 +452,33 @@ select * FROM USER_SYS_PRIVS;   --MOSTRAR LOS PERMISOS QUE TIENE EL USAURIO USER
 
     --MOSTRAMOS CADA USAURIO
     
-        --DUENO (MIGUEL)
+        --ADMINISTRADOR (EDUARDO)
             --PRIVILEGIOS A EL PROPIO ROL
-                select * FROM USER_SYS_PRIVS;   --(DESDE CONEXION Z_DUENO_MIGUEL)
+                select * FROM USER_SYS_PRIVS;   --(DESDE CONEXION Y_ADMINISTRAOR_EDUARDO)
                 
-            --VERIFICANDO QUE ROL DE MIGUEL
-                SELECT * FROM USER_ROLE_PRIVS;   --(DESDE CONEXION Z_DUENO_MIGUEL)
+            --VERIFICANDO QUE ROL DE EDUARDO
+                SELECT * FROM USER_ROLE_PRIVS;   --(DESDE CONEXION Z_ADMINISTRAOR_EDUARDO)
+                
+            --PRIVILEGIOS A OBJETOS EN ESPECIFICOS
+                SELECT * FROM USER_TAB_PRIVS WHERE GRANTEE = 'ADMINISTRADOR'; --(DESDE CONEXION PROYECTO)
+
+            --PRIVILEGIOS DEL ROL
+            select privilege from dba_sys_privs where grantee = 'ADMINISTRADOR'
+                
+     -----------------------------------------------------------------------------------------------           
+     
+     --DUENO (ANGEL)
+            --PRIVILEGIOS A EL PROPIO ROL
+                select * FROM USER_SYS_PRIVS;   --(DESDE CONEXION Z_DUENO_ANGEL)
+                
+            --VERIFICANDO QUE ROL DE ANGEL
+                SELECT * FROM USER_ROLE_PRIVS;   --(DESDE CONEXION Z_DUENO_ANGEL)
                 
             --PRIVILEGIOS A OBJETOS EN ESPECIFICOS
                 SELECT * FROM USER_TAB_PRIVS WHERE GRANTEE = 'DUENO'; --(DESDE CONEXION PROYECTO)
+
+            --PRIVILEGIOS DEL ROL
+            select privilege from dba_sys_privs where grantee = 'DUENO'
                 
      -----------------------------------------------------------------------------------------------   
      
@@ -351,17 +599,157 @@ alter session set "_ORACLE_SCRIPT"=true;
 --Info Importante 
 --https://jorgesanchez.net/manuales/abd/control-usuarios-oracle.html
 
+--Selects
+GRANT select on compra to Administrador;
+GRANT select on consumo to Administrador;
+GRANT select on contabilidad to Administrador;
+GRANT select on empleado to Administrador;
+GRANT select on encuesta to Administrador;
+GRANT select on evento to Administrador;
+GRANT select on grupo to Administrador;
+GRANT select on inventario to Administrador;
+GRANT select on mesa to Administrador;
+GRANT select on mesa_reservada to Administrador;
+GRANT select on pago to Administrador;
+GRANT select on persona to Administrador;
+GRANT select on plato to Administrador;
+GRANT select on plato_consumido to Administrador;
+GRANT select on plato_dia to Administrador;
+GRANT select on producto to Administrador;
+GRANT select on promocion to Administrador;
+GRANT select on puesto to Administrador;
+GRANT select on receta to Administrador;
+GRANT select on reserva to Administrador;
+GRANT select on restaurante to Administrador;
+GRANT select on rol to Administrador;
+GRANT select on sucursal to Administrador;
 
+--Inserts
+GRANT insert on compra to Administrador;
+GRANT insert on consumo to Administrador;
+GRANT insert on contabilidad to Administrador;
+GRANT insert on empleado to Administrador;
+GRANT insert on encuesta to Administrador;
+GRANT insert on evento to Administrador;
+GRANT insert on grupo to Administrador;
+GRANT insert on inventario to Administrador;
+GRANT insert on mesa to Administrador;
+GRANT insert on mesa_reservada to Administrador;
+GRANT insert on pago to Administrador;
+GRANT insert on persona to Administrador;
+GRANT insert on plato to Administrador;
+GRANT insert on plato_consumido to Administrador;
+GRANT insert on plato_dia to Administrador;
+GRANT insert on producto to Administrador;
+GRANT insert on promocion to Administrador;
+GRANT insert on puesto to Administrador;
+GRANT insert on receta to Administrador;
+GRANT insert on reserva to Administrador;
+GRANT insert on restaurante to Administrador;
+GRANT insert on rol to Administrador;
+GRANT insert on sucursal to Administrador;
 
+--Updates
+GRANT update on compra to Administrador;
+GRANT update on consumo to Administrador;
+GRANT update on contabilidad to Administrador;
+GRANT update on empleado to Administrador;
+GRANT update on encuesta to Administrador;
+GRANT update on evento to Administrador;
+GRANT update on grupo to Administrador;
+GRANT update on inventario to Administrador;
+GRANT update on mesa to Administrador;
+GRANT update on mesa_reservada to Administrador;
+GRANT update on pago to Administrador;
+GRANT update on persona to Administrador;
+GRANT update on plato to Administrador;
+GRANT update on plato_consumido to Administrador;
+GRANT update on plato_dia to Administrador;
+GRANT update on producto to Administrador;
+GRANT update on promocion to Administrador;
+GRANT update on puesto to Administrador;
+GRANT update on receta to Administrador;
+GRANT update on reserva to Administrador;
+GRANT update on restaurante to Administrador;
+GRANT update on rol to Administrador;
+GRANT update on sucursal to Administrador;
 
+--Drops
+GRANT delete on compra to Administrador;
+GRANT delete on consumo to Administrador;
+GRANT delete on contabilidad to Administrador;
+GRANT delete on empleado to Administrador;
+GRANT delete on encuesta to Administrador;
+GRANT delete on evento to Administrador;
+GRANT delete on grupo to Administrador;
+GRANT delete on inventario to Administrador;
+GRANT delete on mesa to Administrador;
+GRANT delete on mesa_reservada to Administrador;
+GRANT delete on pago to Administrador;
+GRANT delete on persona to Administrador;
+GRANT delete on plato to Administrador;
+GRANT delete on plato_consumido to Administrador;
+GRANT delete on plato_dia to Administrador;
+GRANT delete on producto to Administrador;
+GRANT delete on promocion to Administrador;
+GRANT delete on puesto to Administrador;
+GRANT delete on receta to Administrador;
+GRANT delete on reserva to Administrador;
+GRANT delete on restaurante to Administrador;
+GRANT delete on rol to Administrador;
+GRANT delete on sucursal to Administrador;
 
 --Alters
-GRANT alter on compra to Gerente_General;
-GRANT alter on empleado to Gerente_General;
-GRANT alter on evento to Gerente_General;
-GRANT alter on grupo to Gerente_General;
-GRANT alter on persona to Gerente_General;
-GRANT alter on reserva to Gerente_General;
-GRANT alter on mesa to Gerente_General;
-GRANT alter on mesa_reservada to Gerente_General;
-GRANT alter on rol to Gerente_General;
+GRANT alter on compra to Administrador;
+GRANT alter on consumo to Administrador;
+GRANT alter on contabilidad to Administrador;
+GRANT alter on empleado to Administrador;
+GRANT alter on encuesta to Administrador;
+GRANT alter on evento to Administrador;
+GRANT alter on grupo to Administrador;
+GRANT alter on inventario to Administrador;
+GRANT alter on mesa to Administrador;
+GRANT alter on mesa_reservada to Administrador;
+GRANT alter on pago to Administrador;
+GRANT alter on persona to Administrador;
+GRANT alter on plato to Administrador;
+GRANT alter on plato_consumido to Administrador;
+GRANT alter on plato_dia to Administrador;
+GRANT alter on producto to Administrador;
+GRANT alter on promocion to Administrador;
+GRANT alter on puesto to Administrador;
+GRANT alter on receta to Administrador;
+GRANT alter on reserva to Administrador;
+GRANT alter on restaurante to Administrador;
+GRANT alter on rol to Administrador;
+GRANT alter on sucursal to Administrador;
+
+
+
+
+
+--AOSDJKFASDKFALSJDFLKASJDFLJASDLFJLASJDFKLJASLDKFJLKASJFAJSDFLKASJLFKDJALSKFJAS
+
+Select * FROM  USER_PROYECTO.compra;
+Select * FROM  USER_PROYECTO.consumo;
+Select * FROM  USER_PROYECTO.contabilidad;
+Select * FROM  USER_PROYECTO.empleado;
+Select * FROM  USER_PROYECTO.encuesta;
+Select * FROM  USER_PROYECTO.evento;
+Select * FROM  USER_PROYECTO.grupo;
+Select * FROM  USER_PROYECTO.inventario;
+Select * FROM  USER_PROYECTO.mesa;
+Select * FROM  USER_PROYECTO.mesa_reservada;
+Select * FROM  USER_PROYECTO.pago;
+Select * FROM  USER_PROYECTO.persona;
+Select * FROM  USER_PROYECTO.plato;
+Select * FROM  USER_PROYECTO.plato_consumido;
+Select * FROM  USER_PROYECTO.plato_dia;
+Select * FROM  USER_PROYECTO.producto;
+Select * FROM  USER_PROYECTO.promocion;
+Select * FROM  USER_PROYECTO.puesto;
+Select * FROM  USER_PROYECTO.receta;
+Select * FROM  USER_PROYECTO.reserva;
+Select * FROM  USER_PROYECTO.restaurante;
+Select * FROM  USER_PROYECTO.rol;
+Select * FROM  USER_PROYECTO.sucursal;

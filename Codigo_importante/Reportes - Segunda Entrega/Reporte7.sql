@@ -22,7 +22,7 @@ Declare
         else vr_nombre_suc:= lower(translate(nombre_suc,'áéíóúÁÉÍÓÚ','aeiouAEIOU'));
         end if;
     open cur for
-        select suc.direccion sucursal, to_char(inv.fecha_inventario.fecha_inicio) fecha_inventario, pro.nombre producto, pro.foto foto, '3' as cantidad
+        select suc.direccion sucursal, to_char(inv.fecha_inventario.fecha_inicio) fecha_inventario, pro.nombre producto, pro.foto foto, inv.acumulado.cant_acumulado as acumulado
         from inventario inv
         join sucursal suc
         on (inv.id_sucursal = suc.id)
