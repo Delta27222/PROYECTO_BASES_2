@@ -8,7 +8,7 @@ begin
     begin
         if (nombre_sucursal is null) then
             vr_nombre_s:= '%';
-        else vr_nombre_s:= lower(translate(nombre_sucursal,'áéíóú�?É�?ÓÚ','aeiouAEIOU'));
+        else vr_nombre_s:= lower(translate(nombre_sucursal,'áéíóú�?É�?ÓÚ','aeiouAEIOU'));
         end if; 
 
         if (fecha_ini is null) then
@@ -36,7 +36,7 @@ begin
             on p.id = c.id
             join sucursal s
             on s.id = c.id_sucursal
-            where lower(translate(s.direccion,'áéíóú�?É�?ÓÚ','aeiouAEIOU'))like vr_nombre_s;
+            where lower(translate(s.direccion,'áéíóú�?É�?ÓÚ','aeiouAEIOU'))like vr_nombre_s;
         
     end;
 end;
